@@ -1,7 +1,7 @@
 <?php
 require('libs/Smarty.class.php');
 
-class TareasView
+class PeliculasView
 {
   private $smarty;
 
@@ -19,13 +19,13 @@ class TareasView
     $this->smarty->assign('tipoMensaje',$tipo);
   }
 
-  function mostrar($tareas){
-    $this->smarty->assign('tareas',$tareas);
+  function mostrar($peliculas){
+    $this->smarty->assign('peliculas',$peliculas);
     $this->smarty->display('index.tpl');
   }
 
-  function getLista($tareas){
-    $this->smarty->assign('tareas',$tareas);
+  function getLista($peliculas){
+    $this->smarty->assign('tareas',$peliculas);
     $this->smarty->display('lista.tpl');
   }
 

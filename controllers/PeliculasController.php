@@ -1,46 +1,40 @@
 <?php
-require('views/TareasView.php');
-require('models/TareasModel.php');
+require('views/PeliculasView.php');
+require('models/PeliculasModel.php');
 
-class TareasController
+class PeliculasController
 {
   private $vista;
   private $modelo;
 
   function __construct()
   {
-    $this->modelo = new TareasModel();
-    $this->vista = new TareasView();
+    $this->modelo = new PeliculasModel();
+    $this->vista = new PeliculasView();
   }
 
   function iniciar(){
-    $tareas = $this->modelo->getTareas();
-    $this->vista->mostrar($tareas);
+    $peliculas = $this->modelo->getPeliculas();
+    $this->vista->mostrar($peliculas);
   }
 
-  function getImagenesVerificadas($imagenes){
-    $imagenesVerificadas = [];
-    for ($i=0; $i < count($imagenes['size']); $i++) {
-      if($imagenes['size'][$i]>0 && $imagenes['type'][$i]=="image/jpeg"){
-          $imagen_aux = [];
-          $imagen_aux['tmp_name']=$imagenes['tmp_name'][$i];
-          $imagen_aux['name']=$imagenes['name'][$i];
-          $imagenesVerificadas[]=$imagen_aux;
+  function getImagenVerificada($imagen){
+      if($imagen['size']>0 && $imagen['type']=="image/jpeg"){
+          return $imagen;
       }
-    }
-
-    return $imagenesVerificadas;
   }
 
   function guardar(){
-    $tarea = $_POST['tarea'];
-    if(isset($_FILES['imagenes'])){
-      $imagenesVerificadas = $this->getImagenesVerificadas($_FILES['imagenes']);
-      if(count($imagenesVerificadas)>0){
-        if(!$this->filtro($tarea)){
-          $this->modelo->crearTarea($tarea,$imagenesVerificadas);
-          $this->vista->mostrarMensaje("La tarea se creo con imagen y todo!", "success");
-        }
+    $titulo = $_POST['titulo'];
+    $link = $_POST['link'];
+    $descripcion = $_POST['descripcion'];
+    $generos = $_POST['generos'];
+    print_r($generos);
+    if(isset($_FILES['imagen'])){
+      $imagenVerificada = $this->getImagenVerificada($_FILES['imagen']);
+      if(count($imagenVerificada)>0){
+        $this->modelo->crearPelicula($titulo,$link,$descripcion,$imagenVerificada,$generos);
+        $this->vista->mostrarMensaje("La pelicula se creo con imagen y todo!", "success");
       }
       else{
         $this->vista->mostrarMensaje("Error con las imagenes", "danger");
@@ -66,8 +60,8 @@ class TareasController
     $this->iniciar();
   }
 
-  function filtro($tarea){
-    return preg_match('/podria/',$tarea);
+  function filtro($pelicula){
+    return preg_match('/podria/',$pelicula);
   }
 
 
