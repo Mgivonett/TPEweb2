@@ -25,7 +25,7 @@ class PeliculasView
   }
 
   function getLista($peliculas){
-    $this->smarty->assign('tareas',$peliculas);
+    $this->smarty->assign('peliculas',$peliculas);
     $this->smarty->display('lista.tpl');
   }
 

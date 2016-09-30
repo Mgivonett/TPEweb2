@@ -20,8 +20,8 @@ class PeliculasModel{
   function getGeneroXId($id_genero){//Retorna el titulo de un genero de acuerdo al ID pasado como parametro
       $sentencia = $this->db->prepare( "select titulo from genero where id_genero=?");
       $sentencia->execute(array($id_genero));
-      $generos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-      return $generos;
+      $genero = $sentencia->fetch(PDO::FETCH_ASSOC);
+    return $genero['titulo'];
   }
   function getPeliculaXId($id_pelicula){
       $sentencia = $this->db->prepare( "select * from pelicula where id_pelicula=?");
@@ -34,7 +34,7 @@ class PeliculasModel{
       $sentencia->execute(array($id_pelicula));
       $generos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
       $listaGeneros=[];
-      foreach ($generos as $keyG => $genero){
+      foreach ($generos as $key => $genero){
           $listaGeneros[]=$this->getGeneroXId($genero['fk_id_genero']);
       }
       return $listaGeneros;
@@ -68,8 +68,8 @@ class PeliculasModel{
   {
     $sentencia = $this->db->prepare("select id_genero from genero where titulo=?");
     $sentencia->execute(array($genero));
-    $id_genero = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-    return $id_genero;
+    $id_genero = $sentencia->fetch(PDO::FETCH_ASSOC);
+    return $id_genero['id_genero'];
   }
   function crearPelicula($titulo,$link,$descripcion, $imagen,$generos){
     $path="images/".uniqid()."_".$imagen["name"];
@@ -81,7 +81,7 @@ class PeliculasModel{
     for ($i=0;$i<count($generos);$i++){
       $id_genero_tabla=$this->getIdGenero($generos[$i]);
       var_dump($id_genero_tabla);
-      if($id_genero_tabla!=null){
+      if($id_genero_tabla!=""){
         $this->crearGeneroPelicula($id_genero_tabla,$id_pelicula);
       }else{
         $id_genero=$this->crearGenero($generos[$i]);
