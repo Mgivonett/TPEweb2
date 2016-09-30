@@ -29,7 +29,6 @@ class PeliculasController
     $link = $_POST['link'];
     $descripcion = $_POST['descripcion'];
     $generos = $_POST['generos'];
-    print_r($generos);
     if(isset($_FILES['imagen'])){
       $imagenVerificada = $this->getImagenVerificada($_FILES['imagen']);
       if(count($imagenVerificada)>0){
