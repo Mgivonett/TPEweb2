@@ -17,6 +17,7 @@ class PeliculasView
   function mostrarMensaje($mensaje, $tipo){
     $this->smarty->assign('mensaje',$mensaje);
     $this->smarty->assign('tipoMensaje',$tipo);
+    $this->smarty->display('mensaje.tpl');
   }
 
   function mostrar($peliculas){

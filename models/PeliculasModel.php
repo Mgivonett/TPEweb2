@@ -80,7 +80,6 @@ class PeliculasModel{
     //agregar los generos
     for ($i=0;$i<count($generos);$i++){
       $id_genero_tabla=$this->getIdGenero($generos[$i]);
-      var_dump($id_genero_tabla);
       if($id_genero_tabla!=""){
         $this->crearGeneroPelicula($id_genero_tabla,$id_pelicula);
       }else{

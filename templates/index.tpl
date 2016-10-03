@@ -7,20 +7,18 @@
 </head>
 <body>
 
-
-
-{if isset($mensaje)}
-  <div class="alert alert-{$tipoMensaje}" role="alert">{$mensaje}</div>
-{/if}
+<div class="mensaje">
+  {include file='mensaje.tpl'}
+</div>
 
 <h1>Lista de Peliculas</h1>
 <form id="formPelicula" action="index.php?action=guardar_pelicula" method="post" enctype="multipart/form-data">
   <p>TITULO</p>
-  <input type="text" name="titulo"  required value="" placeholder="Ingrese titulo de la Pelicula"><br>
+  <input type="text" name="titulo"  required value="" placeholder="Ingrese titulo de la Pelicula" ><br>
   <p>LINK</p>
-  <input type="text" name="link"  required value="" placeholder="Ingrese link de la Pelicula"><br>
+  <input type="text" name="link"  required value="" placeholder="Ingrese link de la Pelicula" ><br>
   <p>DESCRIPCION</p>
-  <textarea name="descripcion" id="" cols="30" rows="5"></textarea><br>
+  <textarea name="descripcion" id="" cols="30" rows="5" ></textarea><br>
   <p>IMAGEN</p>
   <input type="file" name="imagen" required value="" ><br>
   <p>GENEROS</p>
@@ -38,6 +36,6 @@
   {include file='lista.tpl'}
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<!--<script src="js/tareas.js"></script>-->
+<script src="js/tareas.js"></script>
 </body>
 </html>
