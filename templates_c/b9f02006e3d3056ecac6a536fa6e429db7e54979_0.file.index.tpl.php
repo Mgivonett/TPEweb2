@@ -1,3 +1,28 @@
+<?php
+/* Smarty version 3.1.30, created on 2016-10-03 17:08:30
+  from "C:\xampp\htdocs\web2\TPEweb2\templates\index.tpl" */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.30',
+  'unifunc' => 'content_57f2746ee706b8_90765845',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'b9f02006e3d3056ecac6a536fa6e429db7e54979' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\web2\\TPEweb2\\templates\\index.tpl',
+      1 => 1475505873,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:lista.tpl' => 1,
+  ),
+),false)) {
+function content_57f2746ee706b8_90765845 (Smarty_Internal_Template $_smarty_tpl) {
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,9 +54,17 @@
   <input type="submit" name="Agregar" id="agregarPeliculaBtn">
 </form>
 <div id="listaPeliculas">
-  {include file='lista.tpl'}
+  <?php $_smarty_tpl->_subTemplateRender("file:lista.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="js/peliculas.js"></script>
+<?php echo '<script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="js/peliculas.js"><?php echo '</script'; ?>
+>
 </body>
 </html>
+<?php }
+}
