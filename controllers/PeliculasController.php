@@ -18,7 +18,7 @@ class PeliculasController
     $this->vista->mostrar($peliculas);
   }
   
-  function actualizar(){
+  function actualizarLista(){
     $peliculas = $this->modelo->getPeliculas();
     $this->vista->getLista($peliculas);
   }
@@ -47,7 +47,7 @@ class PeliculasController
     else{
       $this->vista->mostrarMensaje("La imagen es requerida","danger");
     }
-    $this->actualizar();
+    $this->actualizarLista();
   }
 
   function eliminar(){
@@ -58,9 +58,11 @@ class PeliculasController
     $this->vista->getLista($peliculas);
   }
 
-  function realizar(){
-    $key = $_GET['id_tarea'];
-    $this->modelo->toogleTarea($key);
+  function editar(){
+    $key = $_GET['id_pelicula'];
+    $pelicula=$this->modelo->getPeliculaXId($key);
+    $this->vista->mostrarPelicula($key);
+    $this->modelo->editarPelicula($pelicula['titulo'],$pelicula['link'],$pelicula['descripcion'],$pelicula['imagen'],$generos,$key);
     $this->iniciar();
   }
 

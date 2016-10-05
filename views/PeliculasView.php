@@ -30,6 +30,11 @@ class PeliculasView
     $this->smarty->display('lista.tpl');
   }
 
+  function mostrarPelicula($pelicula){
+    
+  }
+
+
 }
 
 
