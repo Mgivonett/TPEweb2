@@ -1,3 +1,4 @@
+
 <ul>
   {foreach from=$peliculas key=index item=pelicula}
   <li>
