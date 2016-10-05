@@ -24,8 +24,8 @@ class PeliculasModel{
   function getPeliculaXId($id_pelicula){
       $sentencia = $this->db->prepare( "select * from pelicula where id_pelicula=?");
       $sentencia->execute(array($id_pelicula));
-      $peliculas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-      return $peliculas;
+      $pelicula = $sentencia->fetch(PDO::FETCH_ASSOC);
+      return $pelicula;
   }
   function getGenerosPelicula($id_pelicula){//Devuelve la lista de los titulos de los generos de una pelicula
       $sentencia = $this->db->prepare( "select fk_id_genero from genero_pelicula where fk_id_pelicula=?");
@@ -75,38 +75,43 @@ class PeliculasModel{
     $sentencia = $this->db->prepare("INSERT INTO pelicula(titulo,link,imagen,descripcion) VALUES(?,?,?,?)");
     $sentencia->execute(array($titulo,$link,$path,$descripcion));
     $id_pelicula = $this->db->lastInsertId();
-    //agregar los generos
-    for ($i=0;$i<count($generos);$i++){
-      $id_genero_tabla=$this->getIdGenero($generos[$i]);
-      if($id_genero_tabla!=""){
+    //agregar los generos y/o crearlos
+    $this->agregadoYCreacionDeGeneros($generos,$id_pelicula);
+  }
+
+  function agregadoYCreacionDeGeneros($generos,$id_pelicula){
+    foreach ($generos as $genero){
+      $id_genero_tabla=$this->getIdGenero($genero);
+      if($id_genero_tabla!=""){ //si el genero existe en la tabla generos
         $this->crearGeneroPelicula($id_genero_tabla,$id_pelicula);
-      }else{
-        $id_genero=$this->crearGenero($generos[$i]);
+      }else{                    //sino existe el genero en la tabla, lo creo y luego hago la relacion genero/pelicula
+        $id_genero=$this->crearGenero($genero);
         $this->crearGeneroPelicula($id_genero,$id_pelicula);
       }
     }
   }
+
   function crearGeneroPelicula($id_genero,$id_pelicula){//crear regitro en la tabla genero_pelicula
     $sentencia = $this->db->prepare("INSERT INTO genero_pelicula(fk_id_pelicula,fk_id_genero) VALUES(?,?)");
     $sentencia->execute(array($id_pelicula,$id_genero));
   }
 
+  function eliminarGenerosPelicula($id_pelicula){
+    $sentencia = $this->db->prepare("delete from genero_pelicula where fk_id_pelicula=?");
+    $sentencia->execute(array($id_pelicula));
+  }
   function eliminarPelicula($id_pelicula){
     $sentencia = $this->db->prepare("delete from pelicula where id_pelicula=?");
     $sentencia->execute(array($id_pelicula));
-    $sentencia2 = $this->db->prepare("delete from genero_pelicula where fk_id_pelicula=?");
-    $sentencia2->execute(array($id_pelicula));
+    $this->eliminarGenerosPelicula($id_pelicula);
   }
-
-  function getTarea($id_tarea){
-    $sentencia = $this->db->prepare( "select * from tarea where id_tarea=?");
-    $sentencia->execute(array($id_tarea));
-    return $sentencia->fetch(PDO::FETCH_ASSOC);
+  
+  function editarPelicula($titulo,$link,$descripcion,$imagen,$generos,$id_pelicula){
+   // $pelicula = $this->getPeliculaXId($id_pelicula);
+    $sentencia = $this->db->prepare("update pelicula set titulo=?,link=?,descripcion=?,imagen=? where id_pelicula=?");
+    $sentencia->execute(array($titulo,$link,$descripcion,$imagen,$id_pelicula));
+    $this->eliminarGenerosPelicula($id_pelicula);
+    $this->agregadoYCreacionDeGeneros($generos,$id_pelicula);
   }
 }
-  function editarPelicula($id_tarea){
-    $tarea = $this->getTarea($id_tarea);
-    $sentencia = $this->db->prepare("update tarea set finalizada=? where id_tarea=?");
-    $sentencia->execute(array(!$tarea['finalizada'],$id_tarea));
-  }
 ?>

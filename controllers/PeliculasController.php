@@ -18,7 +18,7 @@ class PeliculasController
     $this->vista->mostrar($peliculas);
   }
   
-  function actualizar(){
+  function actualizarLista(){
     $peliculas = $this->modelo->getPeliculas();
     $this->vista->getLista($peliculas);
   }
@@ -34,10 +34,7 @@ class PeliculasController
     $link = $_POST['link'];
     $descripcion = $_POST['descripcion'];
     $generos = $_POST['generos'];
-<<<<<<< HEAD
-    print_r(isset($_FILES['imagen']));
-=======
->>>>>>> rama2
+
     if(isset($_FILES['imagen'])){
       $imagenVerificada = $this->getImagenVerificada($_FILES['imagen']);
       if((count($imagenVerificada)>0) && (count($generos)>0)){
@@ -52,11 +49,9 @@ class PeliculasController
     else{
       $this->vista->mostrarMensaje("La imagen es requerida","danger");
     }
-    $this->actualizar();
-<<<<<<< HEAD
-    //$this->iniciar();
-=======
->>>>>>> rama2
+
+    $this->actualizarLista();
+
   }
 
   function eliminar(){
@@ -67,9 +62,11 @@ class PeliculasController
     $this->vista->getLista($peliculas);
   }
 
-  function realizar(){
-    $key = $_GET['id_tarea'];
-    $this->modelo->toogleTarea($key);
+  function editar(){
+    $key = $_GET['id_pelicula'];
+    $pelicula=$this->modelo->getPeliculaXId($key);
+    $this->vista->mostrarPelicula($key);
+    $this->modelo->editarPelicula($pelicula['titulo'],$pelicula['link'],$pelicula['descripcion'],$pelicula['imagen'],$generos,$key);
     $this->iniciar();
   }
 
