@@ -23,10 +23,16 @@ $(document).ready(function(){
         });
     }));
 
-    $('body').on('click','.eliminarPelicula',function(e){
+/*    $('body').on('click','.eliminarPelicula',function(e){
         e.preventDefault();
         $.get( "index.php?action=eliminar_pelicula",{ id_pelicula: $(this).attr("data-idpelicula") }, function(data) {
             $('#listaPeliculas').html(data);
+        });
+    });*/
+    $('body').on('click','.editarPelicula',function(e){
+        e.preventDefault();
+        $.get( "index.php?action=ir_a_editar_pelicula",{ id_pelicula: $(this).attr("data-idpelicula") }, function(data) {
+            $('.container').html(data);
         });
     });
 });

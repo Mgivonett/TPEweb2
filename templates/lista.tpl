@@ -12,7 +12,7 @@
         {/foreach}
       </ul>
       <a class="eliminarPelicula" href="#" data-idpelicula="{$pelicula['id_pelicula']}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-      <a href="index.php?action=editar_pelicula&id_pelicula={$pelicula['id_pelicula']}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+      <a class="editarPelicula" href="#" data-idpelicula="{$pelicula['id_pelicula']}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
   </li>
   {/foreach}
 </ul>

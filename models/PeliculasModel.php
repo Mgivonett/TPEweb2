@@ -113,5 +113,13 @@ class PeliculasModel{
     $this->eliminarGenerosPelicula($id_pelicula);
     $this->agregadoYCreacionDeGeneros($generos,$id_pelicula);
   }
+
+  function editarPeliculaSinImagen($titulo,$link,$descripcion,$generos,$id_pelicula){
+    echo "ok";
+    $sentencia = $this->db->prepare("update pelicula set titulo=?,link=?,descripcion=? where id_pelicula=?");
+    $sentencia->execute(array($titulo,$link,$descripcion,$id_pelicula));
+    $this->eliminarGenerosPelicula($id_pelicula);
+    $this->agregadoYCreacionDeGeneros($generos,$id_pelicula);
+  }
 }
 ?>

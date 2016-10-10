@@ -19,6 +19,12 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
   case ConfigApp::$ACTION_ELIMINAR_PELICULA:
     $controller->eliminar();
     break;
+  case ConfigApp::$ACTION_IR_A_EDITAR_PELICULA:
+    $controller->peliculaAEditar();
+    break;
+  case ConfigApp::$ACTION_EDITAR_PELICULA:
+    $controller->editar();
+    break;
   case ConfigApp::$ACTION_MOSTRAR_PELICULAS_X_GENEROS:
     $controller->realizar();//cambiar a mostrar las peliculas segun el genero seleccionado
     break;

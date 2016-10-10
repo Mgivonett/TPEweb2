@@ -52,25 +52,47 @@ class PeliculasController
 
   function eliminar(){
     $key = $_GET['id_pelicula'];
-    echo $key;
     $this->modelo->eliminarPelicula($key);
     $peliculas = $this->modelo->getPeliculas();
     $this->vista->getLista($peliculas);
   }
 
-  function editar(){
+  function peliculaAEditar(){
     $key = $_GET['id_pelicula'];
     $pelicula=$this->modelo->getPeliculaXId($key);
-    $this->vista->mostrarPelicula($key);
-    $this->modelo->editarPelicula($pelicula['titulo'],$pelicula['link'],$pelicula['descripcion'],$pelicula['imagen'],$generos,$key);
-    $this->iniciar();
+    $this->vista->mostrarPelicula($pelicula);
   }
 
-  function filtro($pelicula){
-    return preg_match('/podria/',$pelicula);
+  function editar(){
+    $id_pelicula=$_POST['id_pelicula'];
+    $titulo = $_POST['titulo'];
+    $link = $_POST['link'];
+    $descripcion = $_POST['descripcion'];
+    $generos = $_POST['generos'];
+    print_r(isset($generos));
+    if(isset($_FILES['imagen'])){
+      $imagenVerificada = $this->getImagenVerificada($_FILES['imagen']);
+      if((count($imagenVerificada)>0) && (count($generos)>0)){
+        $this->modelo->editarPelicula($titulo,$link,$descripcion,$imagenVerificada,$generos,$id_pelicula);
+        $this->vista->mostrarMensaje("La pelicula se edito con exito!", "success");
+        $peliculas = $this->modelo->getPeliculas();
+        $this->vista->mostrarPrincipal($peliculas);
+      }
+      else if(count($generos)>0){
+        $this->modelo->editarPeliculaSinImagen($titulo,$link,$descripcion,$generos,$id_pelicula);
+        $peliculas = $this->modelo->getPeliculas();
+        $this->vista->mostrarPrincipal($peliculas);
+      }
+    }
+    else {
+      if(count($generos)>0){
+        $this->modelo->editarPeliculaSinImagen($titulo,$link,$descripcion,$generos,$id_pelicula);
+      }
+      else{
+      $this->vista->mostrarMensaje("Error con los generos", "danger");
+      }
+    } 
   }
-
 
 }
-
  ?>

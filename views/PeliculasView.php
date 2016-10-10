@@ -24,6 +24,10 @@ class PeliculasView
     $this->smarty->assign('peliculas',$peliculas);
     $this->smarty->display('index.tpl');
   }
+  function mostrarPrincipal($peliculas){
+    $this->smarty->assign('peliculas',$peliculas);
+    $this->smarty->display('principal.tpl');
+  }
 
   function getLista($peliculas){
     $this->smarty->assign('peliculas',$peliculas);
@@ -31,12 +35,9 @@ class PeliculasView
   }
 
   function mostrarPelicula($pelicula){
-    
+    $this->smarty->assign('pelicula',$pelicula);
+    $this->smarty->display('editarPelicula.tpl');
   }
-
-
 }
-
-
 
  ?>
