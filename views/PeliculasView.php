@@ -38,6 +38,11 @@ class PeliculasView
     $this->smarty->assign('pelicula',$pelicula);
     $this->smarty->display('editarPelicula.tpl');
   }
+  
+  function getPelicula($pelicula){
+    $this->smarty->assign('pelicula',$pelicula);
+    $this->smarty->display('detallesPelicula.tpl');
+  }
 }
 
  ?>

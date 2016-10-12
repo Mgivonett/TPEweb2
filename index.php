@@ -13,6 +13,9 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
   case ConfigApp::$ACTION_MOSTRAR_PELICULAS:
     $controller->iniciar();
     break;
+  case ConfigApp::$ACTION_MOSTRAR_PELICULA_SELECCIONADA:
+    $controller->getPelicula();
+    break;
   case ConfigApp::$ACTION_GUARDAR_PELICULA:
     $controller->guardar();
     break;
@@ -26,7 +29,7 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
     $controller->editar();
     break;
   case ConfigApp::$ACTION_MOSTRAR_PELICULAS_X_GENEROS:
-    $controller->realizar();//cambiar a mostrar las peliculas segun el genero seleccionado
+    $controller->mostrarPeliculasXGenero();//cambiar a mostrar las peliculas segun el genero seleccionado
     break;
   default:
     $controller->iniciar();

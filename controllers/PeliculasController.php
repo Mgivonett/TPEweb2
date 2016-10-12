@@ -63,30 +63,36 @@ class PeliculasController
     $this->vista->mostrarPelicula($pelicula);
   }
 
+  function mostrarVistaPeliculas(){
+    $this->vista->mostrarMensaje("La pelicula se edito con exito!", "success");
+    $peliculas = $this->modelo->getPeliculas();
+    $this->vista->mostrarPrincipal($peliculas);
+  }
+
   function editar(){
     $id_pelicula=$_POST['id_pelicula'];
     $titulo = $_POST['titulo'];
     $link = $_POST['link'];
     $descripcion = $_POST['descripcion'];
     $generos = $_POST['generos'];
-    print_r(isset($generos));
-    if(isset($_FILES['imagen'])){
+    if(!empty($_FILES['imagen']['name'])){  //si se agrego una imagen al formulalrio para cambiar la actual
       $imagenVerificada = $this->getImagenVerificada($_FILES['imagen']);
       if((count($imagenVerificada)>0) && (count($generos)>0)){
-        $this->modelo->editarPelicula($titulo,$link,$descripcion,$imagenVerificada,$generos,$id_pelicula);
-        $this->vista->mostrarMensaje("La pelicula se edito con exito!", "success");
-        $peliculas = $this->modelo->getPeliculas();
-        $this->vista->mostrarPrincipal($peliculas);
+        $pelicula=$this->modelo->getPeliculaXId($id_pelicula);
+        $this->modelo->desvincularImgAnterior($pelicula['imagen']);
+        $imagen=$this->modelo->imagenUpload($imagenVerificada);
+        $this->modelo->editarPelicula($titulo,$link,$descripcion,$imagen,$generos,$id_pelicula);
+        $this->mostrarVistaPeliculas();
       }
-      else if(count($generos)>0){
+      else if(count($generos)>0){ //pelicula editada, pero conservando la imagen anterior porque no paso la verificacion
         $this->modelo->editarPeliculaSinImagen($titulo,$link,$descripcion,$generos,$id_pelicula);
-        $peliculas = $this->modelo->getPeliculas();
-        $this->vista->mostrarPrincipal($peliculas);
+        $this->mostrarVistaPeliculas();
       }
     }
     else {
-      if(count($generos)>0){
+      if(count($generos)>0){//pelicula editada, pero conservando la imagen anterior porque no se agrego al formulario
         $this->modelo->editarPeliculaSinImagen($titulo,$link,$descripcion,$generos,$id_pelicula);
+        $this->mostrarVistaPeliculas();
       }
       else{
       $this->vista->mostrarMensaje("Error con los generos", "danger");
@@ -94,5 +100,14 @@ class PeliculasController
     } 
   }
 
+  function getPelicula(){
+    $id_pelicula=$_GET['id_pelicula'];
+    $pelicula=$this->modelo->getPeliculaXId($id_pelicula);
+    $this->vista->getPelicula($pelicula);
+  }
+
+  function mostrarPeliculasXGenero(){
+
+  }
 }
  ?>

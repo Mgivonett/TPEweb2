@@ -13,7 +13,6 @@ $(document).ready(function(){
             success:function(data){
                 console.log(data);
                 $('.container').html(data);//tengo que mostrar data en la pantalla
-                console.log("pelcula editada con exito");
             },
             error: function(data){
                 alert("error");

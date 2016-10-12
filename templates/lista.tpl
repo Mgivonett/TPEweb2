@@ -5,7 +5,7 @@
       {$pelicula['titulo']}
       {$pelicula['link']}
       {$pelicula['descripcion']}
-      <img src="{$pelicula['imagen']}" alt="imagen pelicula">
+      <img class="pelicula-img" data-idpelicula="{$pelicula['id_pelicula']}" src="{$pelicula['imagen']}" alt="imagen pelicula">
       <ul>
         {foreach from=$pelicula['generos'] key=index item=genero}
         <li>{$genero}</li>
