@@ -34,7 +34,7 @@ class PeliculasView
     $this->smarty->display('lista.tpl');
   }
 
-  function mostrarPelicula($pelicula){
+  function mostrarPelicula($pelicula){//muestra una pelicula, traida por id, al template editarPelicula para editarla
     $this->smarty->assign('pelicula',$pelicula);
     $this->smarty->display('editarPelicula.tpl');
   }

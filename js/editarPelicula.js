@@ -1,7 +1,6 @@
 $(document).ready(function(){
     $('#formPeliculaEditar').on('submit',(function(e) {
         e.preventDefault();
-        console.log("hola mundo");
         var formData = new FormData(this);
         $.ajax({
             type:'POST',
@@ -11,8 +10,7 @@ $(document).ready(function(){
             contentType: false,
             processData: false,
             success:function(data){
-                console.log(data);
-                $('.container').html(data);//tengo que mostrar data en la pantalla
+                $('.container').html(data);
             },
             error: function(data){
                 alert("error");

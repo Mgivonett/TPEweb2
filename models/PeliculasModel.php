@@ -10,7 +10,7 @@ class PeliculasModel{
   }
 
   function getGeneros(){
-      $sentencia = $this->db->prepare( "select * from genero");
+      $sentencia = $this->db->prepare( "select titulo from genero");
       $sentencia->execute();
       $generos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
       return $generos;
@@ -100,6 +100,12 @@ class PeliculasModel{
     $sentencia = $this->db->prepare("delete from genero_pelicula where fk_id_pelicula=?");
     $sentencia->execute(array($id_pelicula));
   }
+
+  function eliminarUnGeneroDePelicula($id_genero,$id_pelicula){
+    $sentencia = $this->db->prepare("delete from genero_pelicula where fk_id_pelicula=? AND fk_id_genero=?");
+    $sentencia->execute(array($id_pelicula,$id_genero));
+  }
+  
   function eliminarPelicula($id_pelicula){
     $sentencia = $this->db->prepare("delete from pelicula where id_pelicula=?");
     $sentencia->execute(array($id_pelicula));
@@ -116,18 +122,14 @@ class PeliculasModel{
     return $path;
   }
 
-  function editarPelicula($titulo,$link,$descripcion,$imagen,$generos,$id_pelicula){
+  function editarPelicula($titulo,$link,$descripcion,$imagen,$id_pelicula){
     $sentencia = $this->db->prepare("update pelicula set titulo=?,link=?,descripcion=?,imagen=? where id_pelicula=?");
     $sentencia->execute(array($titulo,$link,$descripcion,$imagen,$id_pelicula));
-    $this->eliminarGenerosPelicula($id_pelicula);
-    $this->agregadoYCreacionDeGeneros($generos,$id_pelicula);
   }
 
-  function editarPeliculaSinImagen($titulo,$link,$descripcion,$generos,$id_pelicula){
+  function editarPeliculaSinImagen($titulo,$link,$descripcion,$id_pelicula){
     $sentencia = $this->db->prepare("update pelicula set titulo=?,link=?,descripcion=? where id_pelicula=?");
     $sentencia->execute(array($titulo,$link,$descripcion,$id_pelicula));
-    $this->eliminarGenerosPelicula($id_pelicula);
-    $this->agregadoYCreacionDeGeneros($generos,$id_pelicula);
   }
 }
 ?>

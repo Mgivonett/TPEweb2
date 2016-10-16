@@ -63,12 +63,28 @@ class PeliculasController
     $this->vista->mostrarPelicula($pelicula);
   }
 
-  function mostrarVistaPeliculas(){
+  function mostrarVistaPeliculas(){//despues de editar se carga el tpl principal para mostrar las peliculas
     $this->vista->mostrarMensaje("La pelicula se edito con exito!", "success");
     $peliculas = $this->modelo->getPeliculas();
     $this->vista->mostrarPrincipal($peliculas);
   }
-
+  
+  function updateGenerosPelicula($generos,$id_pelicula){//cuando edito compruebo los generos que ya existen en esa pelicula, para no modificarlos, los que no existen, para crearlos y los que ya no estan, borrarlos
+    $todosLosGeneros=$this->modelo->getGeneros();
+    $generosAnterioresDePelicula=$this->modelo->getGenerosPelicula($id_pelicula);
+    foreach ($todosLosGeneros as $unGenero){
+      echo "genero a comprobar";
+      if (in_array($unGenero['titulo'],$generos)){//si el usuario eligio este genero, compruebo si los tiene la pelicula
+        if (!in_array($unGenero['titulo'],$generosAnterioresDePelicula)){ //si el genero seleccionado no esta en la tabla de relacion Genero_Pelicula, lo agrego
+          $this->modelo->crearGeneroPelicula($this->modelo->getIdGenero($unGenero['titulo']),$id_pelicula);
+        }
+      }
+      else if (in_array($unGenero['titulo'],$generosAnterioresDePelicula)){// si el genero no esta seleccionado, pero pertenece a la tabla de realcion genero_pelicula, lo elimino
+        $this->modelo->eliminarUnGeneroDePelicula($this->modelo->getIdGenero($unGenero['titulo']),$id_pelicula);
+      }
+    }
+  }
+  
   function editar(){
     $id_pelicula=$_POST['id_pelicula'];
     $titulo = $_POST['titulo'];
@@ -81,17 +97,23 @@ class PeliculasController
         $pelicula=$this->modelo->getPeliculaXId($id_pelicula);
         $this->modelo->desvincularImgAnterior($pelicula['imagen']);
         $imagen=$this->modelo->imagenUpload($imagenVerificada);
-        $this->modelo->editarPelicula($titulo,$link,$descripcion,$imagen,$generos,$id_pelicula);
+        $this->updateGenerosPelicula($generos,$id_pelicula);
+        $this->modelo->editarPelicula($titulo,$link,$descripcion,$imagen,$id_pelicula);
         $this->mostrarVistaPeliculas();
       }
       else if(count($generos)>0){ //pelicula editada, pero conservando la imagen anterior porque no paso la verificacion
-        $this->modelo->editarPeliculaSinImagen($titulo,$link,$descripcion,$generos,$id_pelicula);
+        $this->updateGenerosPelicula($generos,$id_pelicula);
+        $this->modelo->editarPeliculaSinImagen($titulo,$link,$descripcion,$id_pelicula);
         $this->mostrarVistaPeliculas();
+      }
+      else{
+        $this->vista->mostrarMensaje("Error con los generos", "danger");
       }
     }
     else {
       if(count($generos)>0){//pelicula editada, pero conservando la imagen anterior porque no se agrego al formulario
-        $this->modelo->editarPeliculaSinImagen($titulo,$link,$descripcion,$generos,$id_pelicula);
+        $this->updateGenerosPelicula($generos,$id_pelicula);
+        $this->modelo->editarPeliculaSinImagen($titulo,$link,$descripcion,$id_pelicula);
         $this->mostrarVistaPeliculas();
       }
       else{
