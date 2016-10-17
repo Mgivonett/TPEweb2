@@ -26,10 +26,15 @@ class PeliculasView
   }
   function mostrarPrincipal($peliculas){
     $this->smarty->assign('peliculas',$peliculas);
-    $this->smarty->display('principal.tpl');
+    $this->smarty->display('creacion.tpl');
   }
 
-  function getLista($peliculas){
+function mostrarGenero($genero){
+  $this->smarty->assign('genero',$genero);
+  $this->smarty->displey('genero.tpl')
+}
+
+function getLista($peliculas){
     $this->smarty->assign('peliculas',$peliculas);
     $this->smarty->display('lista.tpl');
   }
@@ -37,6 +42,11 @@ class PeliculasView
   function mostrarPelicula($pelicula){
     $this->smarty->assign('pelicula',$pelicula);
     $this->smarty->display('editarPelicula.tpl');
+  }
+
+  function getPelicula($pelicula){
+    $this->smarty->assign('pelicula',$pelicula);
+    $this->smarty->display('detallesPelicula.tpl');
   }
 }
 

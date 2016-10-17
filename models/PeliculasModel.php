@@ -25,6 +25,7 @@ class PeliculasModel{
       $sentencia = $this->db->prepare( "select * from pelicula where id_pelicula=?");
       $sentencia->execute(array($id_pelicula));
       $pelicula = $sentencia->fetch(PDO::FETCH_ASSOC);
+      $pelicula['generos']=$this->getGenerosPelicula($pelicula['id_pelicula']);//agregado de generos a la pelicula
       return $pelicula;
   }
   function getGenerosPelicula($id_pelicula){//Devuelve la lista de los titulos de los generos de una pelicula
@@ -70,8 +71,7 @@ class PeliculasModel{
     return $id_genero['id_genero'];
   }
   function crearPelicula($titulo,$link,$descripcion, $imagen,$generos){
-    $path="images/".uniqid()."_".$imagen["name"];
-    move_uploaded_file($imagen["tmp_name"], $path);
+    $path=$this->imagenUpload($imagen);
     $sentencia = $this->db->prepare("INSERT INTO pelicula(titulo,link,imagen,descripcion) VALUES(?,?,?,?)");
     $sentencia->execute(array($titulo,$link,$path,$descripcion));
     $id_pelicula = $this->db->lastInsertId();
@@ -105,9 +105,18 @@ class PeliculasModel{
     $sentencia->execute(array($id_pelicula));
     $this->eliminarGenerosPelicula($id_pelicula);
   }
-  
+
+  function desvincularImgAnterior($imagen){
+    unlink($imagen);
+  }
+
+  function imagenUpload($imagen){
+    $path="images/".uniqid()."_".$imagen["name"];
+    move_uploaded_file($imagen["tmp_name"],$path);
+    return $path;
+  }
+
   function editarPelicula($titulo,$link,$descripcion,$imagen,$generos,$id_pelicula){
-   // $pelicula = $this->getPeliculaXId($id_pelicula);
     $sentencia = $this->db->prepare("update pelicula set titulo=?,link=?,descripcion=?,imagen=? where id_pelicula=?");
     $sentencia->execute(array($titulo,$link,$descripcion,$imagen,$id_pelicula));
     $this->eliminarGenerosPelicula($id_pelicula);
@@ -115,7 +124,6 @@ class PeliculasModel{
   }
 
   function editarPeliculaSinImagen($titulo,$link,$descripcion,$generos,$id_pelicula){
-    echo "ok";
     $sentencia = $this->db->prepare("update pelicula set titulo=?,link=?,descripcion=? where id_pelicula=?");
     $sentencia->execute(array($titulo,$link,$descripcion,$id_pelicula));
     $this->eliminarGenerosPelicula($id_pelicula);
