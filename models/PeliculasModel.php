@@ -10,7 +10,7 @@ class PeliculasModel{
   }
 
   function getGeneros(){
-      $sentencia = $this->db->prepare( "select titulo from genero");
+      $sentencia = $this->db->prepare( "select * from genero");
       $sentencia->execute();
       $generos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
       return $generos;

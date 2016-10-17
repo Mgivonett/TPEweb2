@@ -15,7 +15,8 @@ class PeliculasController
 
   function iniciar(){
     $peliculas = $this->modelo->getPeliculas();
-    $this->vista->mostrar($peliculas);
+    $generos= $this->modelo->getGeneros();
+    $this->vista->mostrar($peliculas,$generos);
   }
   
   function actualizarLista(){
@@ -60,7 +61,8 @@ class PeliculasController
   function peliculaAEditar(){
     $key = $_GET['id_pelicula'];
     $pelicula=$this->modelo->getPeliculaXId($key);
-    $this->vista->mostrarPelicula($pelicula);
+    $generos = $this->modelo->getGeneros();
+    $this->vista->mostrarPelicula($pelicula,$generos);
   }
 
   function mostrarVistaPeliculas(){//despues de editar se carga el tpl principal para mostrar las peliculas

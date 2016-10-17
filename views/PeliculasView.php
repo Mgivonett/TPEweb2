@@ -1,14 +1,14 @@
 <?php
-require('libs/Smarty.class.php');
+require('View.php');
 
-class PeliculasView
+class PeliculasView extends View
 {
-  private $smarty;
+/*  private $smarty;
 
   function __construct()
   {
     $this->smarty = new Smarty();
-  }
+  }*/
 
   function agregarError($error){
     $this->smarty->assign('error',$error);
@@ -20,8 +20,9 @@ class PeliculasView
     $this->smarty->display('mensaje.tpl');
   }
 
-  function mostrar($peliculas){
+  function mostrar($peliculas,$generos){
     $this->smarty->assign('peliculas',$peliculas);
+    $this->smarty->assign('generos',$generos);
     $this->smarty->display('index.tpl');
   }
   function mostrarPrincipal($peliculas){
@@ -34,8 +35,9 @@ class PeliculasView
     $this->smarty->display('lista.tpl');
   }
 
-  function mostrarPelicula($pelicula){//muestra una pelicula, traida por id, al template editarPelicula para editarla
+  function mostrarPelicula($pelicula,$generos){//muestra una pelicula, traida por id, al template editarPelicula para editarla
     $this->smarty->assign('pelicula',$pelicula);
+    $this->smarty->assign('generos',$generos);
     $this->smarty->display('editarPelicula.tpl');
   }
   
