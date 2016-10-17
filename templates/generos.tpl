@@ -1,7 +1,7 @@
-<h1>hola! soy el creador de generos</h1>
+
 <h1>Administrador de Generos</h1>
 <form class="formGuardarGenero" action="index.php?action=guardar_genero" method="post" enctype="multipart/form-data">
-    <p>Generos</p>
+    <p>ingrese el nuevo genero aqui</p>
     <input type="text" name="titulo"  required><br>
     <input type="submit" name="guardar-genero" id="guargarGeneroBtn">
 </form>

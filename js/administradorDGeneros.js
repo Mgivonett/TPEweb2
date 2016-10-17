@@ -2,7 +2,6 @@ $(document).ready(function(){
     $('.formGuardarGenero').on('submit',(function(e) {
         e.preventDefault();
         var formData = new FormData(this);
-        console.log("lpm"+$(this).attr('action'));
         $.ajax({
             type:'POST',
             url: $(this).attr('action'),
@@ -11,7 +10,6 @@ $(document).ready(function(){
             contentType: false,
             processData: false,
             success:function(data){
-                console.log("arriba las manos guachin");
                 $('.container').html(data);
             },
             error: function(data){

@@ -25,8 +25,16 @@ class PeliculasView extends View
     $this->smarty->assign('generos',$generos);
     $this->smarty->display('index.tpl');
   }
-  function mostrarPrincipal($peliculas){
+
+  function mostrarPeliculasDelGenero($peliculas,$generos){
     $this->smarty->assign('peliculas',$peliculas);
+    $this->smarty->assign('generos',$generos);
+    $this->smarty->display('lista.tpl');
+  }
+
+  function mostrarPrincipal($peliculas,$generos){
+    $this->smarty->assign('peliculas',$peliculas);
+    $this->smarty->assign('generos',$generos);
     $this->smarty->display('principal.tpl');
   }
 

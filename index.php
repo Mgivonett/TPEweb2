@@ -45,7 +45,7 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
     $controller = new PeliculasController();
     $controller->editar();
     break;
-  case ConfigApp::$ACTION_MOSTRAR_PELICULAS_X_GENEROS:
+  case ConfigApp::$ACTION_MOSTRAR_PELICULAS_X_GENERO:
     include('controllers/PeliculasController.php');
     $controller = new PeliculasController();
     $controller->mostrarPeliculasXGenero();//cambiar a mostrar las peliculas segun el genero seleccionado
@@ -74,6 +74,11 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
     include('controllers/GenerosController.php');
     $generosController = new GenerosController();
     $generosController->editarGenero();//hacer este metodo
+    break;
+  case ConfigApp::$ACTION_HOME:
+    include('controllers/PeliculasController.php');
+    $controller = new PeliculasController();
+    $controller->mostrarVistaPeliculas();
     break;
   default:
     include('controllers/PeliculasController.php');

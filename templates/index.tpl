@@ -30,13 +30,16 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Generos <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Accion</a></li>
-            <li><a href="#">Aventura</a></li>
-            <li><a href="#">Comedia</a></li>
+            {foreach from=$generos key=index item=genero}
+              <li class="selecGen" data-titulogenero="{$genero['titulo']}"> {$genero['titulo']}</li>
+            {/foreach}
+{*            <li><a class="selecGen" data-titulogenero="{$genero['titulo']}">Accion</a></li>
+            <li><a class="selecGen" data-titulogenero="{$genero['titulo']}">Aventura</a></li>
+            <li><a class="selecGen" data-titulogenero="{$genero['titulo']}">Comedia</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Drama</a></li>
+            <li><a class="selecGen" data-titulogenero="{$genero['titulo']}">Drama</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Animada</a></li>
+            <li><a class="selecGen" data-titulogenero="{$genero['titulo']}">Animada</a></li>*}
           </ul>
         </li>
       </ul>

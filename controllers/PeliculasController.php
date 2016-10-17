@@ -66,9 +66,9 @@ class PeliculasController
   }
 
   function mostrarVistaPeliculas(){//despues de editar se carga el tpl principal para mostrar las peliculas
-    $this->vista->mostrarMensaje("La pelicula se edito con exito!", "success");
     $peliculas = $this->modelo->getPeliculas();
-    $this->vista->mostrarPrincipal($peliculas);
+    $generos = $this->modelo->getGeneros();
+    $this->vista->mostrarPrincipal($peliculas,$generos);
   }
   
   function updateGenerosPelicula($generos,$id_pelicula){//cuando edito compruebo los generos que ya existen en esa pelicula, para no modificarlos, los que no existen, para crearlos y los que ya no estan, borrarlos
@@ -131,7 +131,11 @@ class PeliculasController
   }
 
   function mostrarPeliculasXGenero(){
-
+    $tituloGenero=$_GET['titulo'];
+    $id_genero=$this->modelo->getIdGenero($tituloGenero);
+    $generos=$this->modelo->getGeneros();
+    $peliculasXgenero=$this->modelo->getPeliculasXGenero($id_genero);
+    $this->vista->mostrarPeliculasDelGenero($peliculasXgenero,$generos);
   }
 }
  ?>

@@ -42,9 +42,10 @@ class PeliculasModel{
       $sentencia = $this->db->prepare( "select fk_id_pelicula from genero_pelicula where fk_id_genero=?");
       $sentencia->execute(array($id_genero));
       $id_peliculas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    print_r($id_peliculas);
       $listaPeliculas=[];
       foreach ($id_peliculas as $id_pelicula){
-          $listaPeliculas[]=$this->getPeliculaXId($id_pelicula);
+          $listaPeliculas[]=$this->getPeliculaXId($id_pelicula['fk_id_pelicula']);
       }
       return $listaPeliculas;
   }
