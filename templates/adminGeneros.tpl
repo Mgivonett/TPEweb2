@@ -13,7 +13,5 @@
     {/foreach}
 </ul>
 
-
-<button class="inicio-Btn" >Inicio</button>
-<script src="js/administradorDGeneros.js"></script>
+<script src="js/adminCambiosEnGeneros.js"></script>
 <script src="js/volverAInicio.js"></script>

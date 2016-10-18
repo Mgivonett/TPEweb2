@@ -1,14 +1,8 @@
 <?php
-require('View.php');
+include_once('View.php');
 
 class PeliculasView extends View
 {
-/*  private $smarty;
-
-  function __construct()
-  {
-    $this->smarty = new Smarty();
-  }*/
 
   function agregarError($error){
     $this->smarty->assign('error',$error);
@@ -52,6 +46,12 @@ class PeliculasView extends View
   function getPelicula($pelicula){
     $this->smarty->assign('pelicula',$pelicula);
     $this->smarty->display('detallesPelicula.tpl');
+  }
+
+  function mostrarAdministradorDePeliculas($peliculas,$generos){
+    $this->smarty->assign('peliculas',$peliculas);
+    $this->smarty->assign('generos',$generos);
+    $this->smarty->display('admin.tpl');
   }
 }
 
