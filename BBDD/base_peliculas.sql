@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-09-2016 a las 23:36:13
+-- Tiempo de generación: 10-10-2016 a las 21:05:19
 -- Versión del servidor: 10.1.13-MariaDB
--- Versión de PHP: 5.6.23
+-- Versión de PHP: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,6 +31,15 @@ CREATE TABLE `genero` (
   `titulo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `genero`
+--
+
+INSERT INTO `genero` (`id_genero`, `titulo`) VALUES
+(19, 'aventura'),
+(20, 'accion'),
+(21, 'animada');
+
 -- --------------------------------------------------------
 
 --
@@ -43,6 +52,15 @@ CREATE TABLE `genero_pelicula` (
   `id_genero_pelicula` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `genero_pelicula`
+--
+
+INSERT INTO `genero_pelicula` (`fk_id_pelicula`, `fk_id_genero`, `id_genero_pelicula`) VALUES
+(8, 19, 36),
+(8, 20, 37),
+(8, 21, 38);
+
 -- --------------------------------------------------------
 
 --
@@ -51,10 +69,18 @@ CREATE TABLE `genero_pelicula` (
 
 CREATE TABLE `pelicula` (
   `id_pelicula` int(11) NOT NULL,
-  `imagen` varchar(300) NOT NULL,
+  `titulo` varchar(150) NOT NULL,
   `link` varchar(300) NOT NULL,
+  `imagen` varchar(300) NOT NULL,
   `descripcion` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `pelicula`
+--
+
+INSERT INTO `pelicula` (`id_pelicula`, `titulo`, `link`, `imagen`, `descripcion`) VALUES
+(8, 'adb', 'cba', 'images/57fbe45d94347_warcraft_el_origen.jpg', 'aa');
 
 --
 -- Índices para tablas volcadas
@@ -86,17 +112,17 @@ ALTER TABLE `pelicula`
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de la tabla `genero_pelicula`
 --
 ALTER TABLE `genero_pelicula`
-  MODIFY `id_genero_pelicula` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_genero_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT de la tabla `pelicula`
 --
 ALTER TABLE `pelicula`
-  MODIFY `id_pelicula` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
