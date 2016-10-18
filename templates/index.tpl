@@ -7,13 +7,6 @@
 </head>
 <body>
 
-<<<<<<< HEAD
-<div class="mensaje">
-  {include file='mensaje.tpl'}
-</div>
-
-=======
->>>>>>> rama2
 <h1>Lista de Peliculas</h1>
 <form id="formPelicula" action="index.php?action=guardar_pelicula" method="post" enctype="multipart/form-data">
   <p>TITULO</p>
@@ -39,10 +32,6 @@
   {include file='lista.tpl'}
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<<<<<<< HEAD
-<script src="js/tareas.js"></script>
-=======
 <script src="js/peliculas.js"></script>
->>>>>>> rama2
 </body>
 </html>
