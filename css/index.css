@@ -1,6 +1,6 @@
 .thumbnail
 {
-  position: relative;
+
   background-color: #3c3a3a;
 }
 
@@ -27,4 +27,13 @@ font-size: 20px;
 .modiff p
 {
 text-align: center;
+}
+.formulario
+{
+  left: 40%;
+  position:relative;;
+}
+.contenedor
+{
+  background-color: black;
 }

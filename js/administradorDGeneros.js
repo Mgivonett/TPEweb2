@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#formPeliculaEditar').on('submit',(function(e) {
+    $('.formGuardarGenero').on('submit',(function(e) {
         e.preventDefault();
         var formData = new FormData(this);
         $.ajax({
@@ -18,4 +18,10 @@ $(document).ready(function(){
             }
         });
     }));
+    $('body').on('click','.eliminarGenero',function(e){
+        e.preventDefault();
+        $.get( "index.php?action=eliminar_genero",{ id_genero: $(this).attr("data-idgenero") }, function(data) {
+            $('.container').html(data);
+        });
+    })
 });
