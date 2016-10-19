@@ -23,14 +23,10 @@
     <p><input type="text" name="link"  required value="{$pelicula['link']}"></p>
 
 
-      <input type="checkbox" name="generos[]" value="aventura"> aventura<br>
-      <input type="checkbox" name="generos[]" value="accion" > accion<br>
-      <input type="checkbox" name="generos[]" value="animada"> animada<br>
-      <input type="checkbox" name="generos[]" value="comedia" > comedia<br>
-      <input type="checkbox" name="generos[]" value="drama"> drama<br>
-      <input type="checkbox" name="generos[]" value="terror" > terror<br>
-      <input type="checkbox" name="generos[]" value="suspenso"> suspenso<br>
-      <input type="checkbox" name="generos[]" value="ciencia-ficcion" > ciencia ficcion<br>
+    {foreach from=$generos key=index item=genero}
+            <input type="checkbox" name="generos[]" value="{$genero['titulo']}" {if in_array($genero['titulo'],$pelicula['generos'])}checked{/if}> {$genero['titulo']}<br>
+        {/foreach}
+
       <input type="submit" class="btn btn-primary" name="Editar" id="editarPeliculaBtn">
 
     </div>

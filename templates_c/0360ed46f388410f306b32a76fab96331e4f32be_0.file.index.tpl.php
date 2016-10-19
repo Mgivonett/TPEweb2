@@ -1,3 +1,28 @@
+<?php
+/* Smarty version 3.1.30, created on 2016-10-19 23:38:50
+  from "C:\xampp\htdocs\proyectos\Marco\TPEweb2\templates\index.tpl" */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.30',
+  'unifunc' => 'content_5807e7ea1d29b0_00255668',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '0360ed46f388410f306b32a76fab96331e4f32be' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\proyectos\\Marco\\TPEweb2\\templates\\index.tpl',
+      1 => 1476911679,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:principal.tpl' => 1,
+  ),
+),false)) {
+function content_5807e7ea1d29b0_00255668 (Smarty_Internal_Template $_smarty_tpl) {
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,9 +68,20 @@
     <nav class="cmn-tile-nav">
 		<ul class="clearfix">
 
-			{foreach from=$generos key=index item=genero}
-				<li  class="selecGen colour-3" data-titulogenero="{$genero['titulo']}"><a> {$genero['titulo']}</a></li>
-			{/foreach}
+			<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['generos']->value, 'genero', false, 'index');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['index']->value => $_smarty_tpl->tpl_vars['genero']->value) {
+?>
+				<li  class="selecGen colour-3" data-titulogenero="<?php echo $_smarty_tpl->tpl_vars['genero']->value['titulo'];?>
+"><a> <?php echo $_smarty_tpl->tpl_vars['genero']->value['titulo'];?>
+</a></li>
+			<?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
+
 
 		</ul>
     </nav>
@@ -58,7 +94,9 @@
 		<div class="crumbs">
 <div class="container">
 
-	        {include file='principal.tpl'}
+	        <?php $_smarty_tpl->_subTemplateRender("file:principal.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+
 	</div>
 </div>
 </div>
@@ -82,11 +120,33 @@
 
 
 	<!-- js -->
-	<script src="js/jquery-3.1.1.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<script src="libs/bootstrap/js/bootstrap.min.js"></script>
-	<script src="js/detallesPelicula.js"></script>
-	<script src="js/filtroPeliculasXGeneros.js"></script>
-	<script src="js/administradorDePeliculas.js"></script>
+	<?php echo '<script'; ?>
+ src="js/jquery-3.1.1.min.js"><?php echo '</script'; ?>
+>
+	<?php echo '<script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"><?php echo '</script'; ?>
+>
+	<?php echo '<script'; ?>
+ src="libs/bootstrap/js/bootstrap.min.js"><?php echo '</script'; ?>
+>
+	<?php echo '<script'; ?>
+ src="js/detallesPelicula.js"><?php echo '</script'; ?>
+>
+	<?php echo '<script'; ?>
+ src="js/filtroPeliculasXGeneros.js"><?php echo '</script'; ?>
+>
+	<?php echo '<script'; ?>
+ src="js/administradorDePeliculas.js"><?php echo '</script'; ?>
+>
+
+	<?php echo '<script'; ?>
+ src="js/js/classie.js"><?php echo '</script'; ?>
+>
+	<?php echo '<script'; ?>
+ src="js/js/demo.js"><?php echo '</script'; ?>
+>
+
 </div>
 </body></html>
+<?php }
+}

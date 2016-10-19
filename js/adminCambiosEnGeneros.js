@@ -11,6 +11,7 @@ $(document).ready(function(){
             processData: false,
             success:function(data){
                 $('.container').html(data);
+                window.location.reload(true)
             },
             error: function(data){
                 alert("error");
@@ -22,6 +23,7 @@ $(document).ready(function(){
         e.preventDefault();
         $.get( "index.php?action=eliminar_genero",{ id_genero: $(this).attr("data-idgenero") }, function(data) {
             $('.container').html(data);
+            window.location.reload(true)
         });
     })
 });

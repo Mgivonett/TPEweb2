@@ -17,6 +17,7 @@
             <a>{$genero}</a>
               {/foreach}
           </div>
+          <p><a class="btn btn-primary"  role="button" href="{$pelicula['link']}" >Ver</a></p>
           </div>
         </div>
       </div>

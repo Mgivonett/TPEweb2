@@ -20,7 +20,7 @@ class PeliculasController
     $generos= $this->generosController->getModelo()->getGeneros();
     $this->vista->mostrar($peliculas,$generos);
   }
-  
+
   function actualizarLista(){
     $peliculas = $this->modelo->getPeliculas();
     $this->vista->getListaParaAdmin($peliculas);
@@ -74,10 +74,10 @@ class PeliculasController
 
   function mostrarVistaPeliculas(){//despues de editar se carga el tpl adminlista para mostrar las peliculas
     $peliculas = $this->modelo->getPeliculas();
-    //$generos = $this->generosController->getModelo()->getGeneros();
-    $this->vista->getListaParaAdmin($peliculas);
+    $generos = $this->generosController->getModelo()->getGeneros();
+    $this->vista->mostrarAdministradorDePeliculas($peliculas, $generos);
   }
-  
+
   function updateGenerosPelicula($generos,$id_pelicula){//cuando edito compruebo los generos que ya existen en esa pelicula, para no modificarlos, los que no existen, para crearlos y los que ya no estan, borrarlos
     $todosLosGeneros=$this->generosController->getModelo()->getGeneros();
     $generosAnterioresDePelicula=$this->modelo->getGenerosSegunIdPelicula($id_pelicula);
@@ -92,7 +92,7 @@ class PeliculasController
       }
     }
   }
-  
+
   function editar(){
     $id_pelicula=$_POST['id_pelicula'];
     $titulo = $_POST['titulo'];
@@ -127,7 +127,7 @@ class PeliculasController
       else{
       $this->vista->mostrarMensaje("Error con los generos", "danger");
       }
-    } 
+    }
   }
 
   function getPelicula(){
