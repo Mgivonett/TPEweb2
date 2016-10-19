@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-10-2016 a las 21:05:19
+-- Tiempo de generación: 19-10-2016 a las 16:00:14
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.8
 
@@ -36,9 +36,14 @@ CREATE TABLE `genero` (
 --
 
 INSERT INTO `genero` (`id_genero`, `titulo`) VALUES
-(19, 'aventura'),
-(20, 'accion'),
-(21, 'animada');
+(22, 'animada'),
+(23, 'comedia'),
+(24, 'drama'),
+(25, 'aventura'),
+(26, 'accion'),
+(27, 'terror'),
+(28, 'suspenso'),
+(29, 'ciencia-ficcion');
 
 -- --------------------------------------------------------
 
@@ -51,15 +56,6 @@ CREATE TABLE `genero_pelicula` (
   `fk_id_genero` int(11) NOT NULL,
   `id_genero_pelicula` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `genero_pelicula`
---
-
-INSERT INTO `genero_pelicula` (`fk_id_pelicula`, `fk_id_genero`, `id_genero_pelicula`) VALUES
-(8, 19, 36),
-(8, 20, 37),
-(8, 21, 38);
 
 -- --------------------------------------------------------
 
@@ -74,13 +70,6 @@ CREATE TABLE `pelicula` (
   `imagen` varchar(300) NOT NULL,
   `descripcion` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `pelicula`
---
-
-INSERT INTO `pelicula` (`id_pelicula`, `titulo`, `link`, `imagen`, `descripcion`) VALUES
-(8, 'adb', 'cba', 'images/57fbe45d94347_warcraft_el_origen.jpg', 'aa');
 
 --
 -- Índices para tablas volcadas
@@ -112,17 +101,17 @@ ALTER TABLE `pelicula`
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT de la tabla `genero_pelicula`
 --
 ALTER TABLE `genero_pelicula`
-  MODIFY `id_genero_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_genero_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `pelicula`
 --
 ALTER TABLE `pelicula`
-  MODIFY `id_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
