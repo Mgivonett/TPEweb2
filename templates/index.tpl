@@ -56,12 +56,12 @@
 <section id="container" class="sub-page">
 	<div class="wrap-container zerogrid">
 		<div class="crumbs">
-<div class="container">
+			<div class="container">
 
-	        {include file='principal.tpl'}
+				{include file='principal.tpl'}
+			</div>
+		</div>
 	</div>
-</div>
-</div>
 </section>
 
 <!--////////////////////////////////////Footer-->
@@ -72,7 +72,7 @@
 			Copyright 2016 - <a href="https://youtu.be/mJm8HTcTc4o" target="_blank" rel="nofollow">Rodriguez, Givonetti</a>
 			<ul class="quick-link f-right">
 
-          <li><a href="#" class="admin-peliculas">Administrar</a></li>
+          		<li><a href="#" class="admin-peliculas">Administrar</a></li>
 
 			</ul>
 		</div>
@@ -88,9 +88,6 @@
 	<script src="js/detallesPelicula.js"></script>
 	<script src="js/filtroPeliculasXGeneros.js"></script>
 	<script src="js/administradorDePeliculas.js"></script>
-
-	<script src="js/js/classie.js"></script>
-	<script src="js/js/demo.js"></script>
 
 </div>
 </body></html>

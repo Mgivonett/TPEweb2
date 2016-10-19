@@ -74,8 +74,8 @@ class PeliculasController
 
   function mostrarVistaPeliculas(){//despues de editar se carga el tpl adminlista para mostrar las peliculas
     $peliculas = $this->modelo->getPeliculas();
-    //$generos = $this->generosController->getModelo()->getGeneros();
-    $this->vista->getListaParaAdmin($peliculas);
+    $generos = $this->generosController->getModelo()->getGeneros();
+    $this->vista->mostrarAdministradorDePeliculas($peliculas,$generos);
   }
   
   function updateGenerosPelicula($generos,$id_pelicula){//cuando edito compruebo los generos que ya existen en esa pelicula, para no modificarlos, los que no existen, para crearlos y los que ya no estan, borrarlos
