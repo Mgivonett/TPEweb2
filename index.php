@@ -44,7 +44,7 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
     $generosController->eliminarGenero();
     break;
   case ConfigApp::$ACTION_IR_A_ADMINISTRAR_PELICULAS:
-    $controller->irAAdministradorDePeliculas();//hacer este metodo
+    $controller->irAAdministradorDePeliculas();
     break;
   case ConfigApp::$ACTION_HOME:
     $controller->mostrarVistaPeliculas();

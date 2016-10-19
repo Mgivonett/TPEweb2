@@ -80,7 +80,7 @@ class PeliculasController
   
   function updateGenerosPelicula($generos,$id_pelicula){//cuando edito compruebo los generos que ya existen en esa pelicula, para no modificarlos, los que no existen, para crearlos y los que ya no estan, borrarlos
     $todosLosGeneros=$this->generosController->getModelo()->getGeneros();
-    $generosAnterioresDePelicula=$this->modelo->getGenerosPelicula($id_pelicula);
+    $generosAnterioresDePelicula=$this->modelo->getGenerosSegunIdPelicula($id_pelicula);
     foreach ($todosLosGeneros as $unGenero){//por cada genero que exista en la tabla Genero
       if (in_array($unGenero['titulo'],$generos)){//si el usuario eligio este genero, compruebo si los tiene la pelicula
         if (!in_array($unGenero['titulo'],$generosAnterioresDePelicula)){ //si el genero seleccionado no esta en la tabla de relacion Genero_Pelicula, lo agrego

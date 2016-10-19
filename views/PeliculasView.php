@@ -36,6 +36,10 @@ class PeliculasView extends View
     $this->smarty->assign('peliculas',$peliculas);
     $this->smarty->display('lista.tpl');
   }
+/*  function getListaParaAdmin($peliculas){
+    $this->smarty->assign('peliculas',$peliculas);
+    $this->smarty->display('adminlista.tpl');
+  }*/
 
   function mostrarPelicula($pelicula,$generos){//muestra una pelicula, traida por id, al template editarPelicula para editarla
     $this->smarty->assign('pelicula',$pelicula);
@@ -51,7 +55,7 @@ class PeliculasView extends View
   function mostrarAdministradorDePeliculas($peliculas,$generos){
     $this->smarty->assign('peliculas',$peliculas);
     $this->smarty->assign('generos',$generos);
-    $this->smarty->display('admin.tpl');
+    $this->smarty->display('Admin.tpl');
   }
 }
 

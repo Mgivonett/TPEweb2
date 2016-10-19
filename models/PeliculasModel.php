@@ -19,10 +19,10 @@ class PeliculasModel{
       $sentencia = $this->db->prepare( "select * from pelicula where id_pelicula=?");
       $sentencia->execute(array($id_pelicula));
       $pelicula = $sentencia->fetch(PDO::FETCH_ASSOC);
-      $pelicula['generos']=$this->getGenerosSegunTituloPelicula($pelicula['id_pelicula']);//agregado de generos a la pelicula
+      $pelicula['generos']=$this->getGenerosSegunIdPelicula($pelicula['id_pelicula']);//agregado de generos a la pelicula
       return $pelicula;
   }
-  function getGenerosSegunTituloPelicula($id_pelicula){//Devuelve la lista de titulos de los generos de una pelicula
+  function getGenerosSegunIdPelicula($id_pelicula){//Devuelve la lista de titulos de los generos de una pelicula
       $sentencia = $this->db->prepare( "select fk_id_genero from genero_pelicula where fk_id_pelicula=?");
       $sentencia->execute(array($id_pelicula));
       $generos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -47,7 +47,7 @@ class PeliculasModel{
     $sentencia->execute();
     $peliculas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     foreach ($peliculas as $key => $pelicula) {
-      $peliculas[$key]['generos']=$this->getGenerosSegunTituloPelicula($pelicula['id_pelicula']);
+      $peliculas[$key]['generos']=$this->getGenerosSegunIdPelicula($pelicula['id_pelicula']);
     }
     return $peliculas;
   }
