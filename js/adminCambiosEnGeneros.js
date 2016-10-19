@@ -23,5 +23,5 @@ $(document).ready(function(){
         $.get( "index.php?action=eliminar_genero",{ id_genero: $(this).attr("data-idgenero") }, function(data) {
             $('.container').html(data);
         });
-    });
+    })
 });
