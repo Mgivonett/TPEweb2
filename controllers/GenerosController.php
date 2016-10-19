@@ -15,7 +15,7 @@ class GenerosController
   function getModelo(){
     return $this->modelo;
   }
-
+  
   function irAAdministrarGeneros(){
     $generos=$this->modelo->getGeneros();
     $this->vista->mostrar($generos);
@@ -27,7 +27,7 @@ class GenerosController
     $generos=$this->modelo->getGeneros();
     $this->vista->mostrar($generos);
   }
-
+  
   function eliminarGenero(){
     $id_genero = $_GET['id_genero'];
     $this->modelo->eliminarGenero($id_genero);
@@ -35,5 +35,5 @@ class GenerosController
     $generos = $this->modelo->getGeneros();
     $this->vista->mostrar($generos);;
   }
-
+  
 }

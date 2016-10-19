@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-10-18 20:42:31
-  from "C:\xampp\htdocs\proyectos\Marco\TPEweb2\templates\lista.tpl" */
+/* Smarty version 3.1.30, created on 2016-10-19 23:16:54
+  from "C:\xampp\htdocs\proyectos\TPEweb2-issue3\templates\adminlista.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_58066d17e4f3d6_16796567',
+  'unifunc' => 'content_5807e2c6e96a31_44143494',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '128e1c25395f91d0afeb740e63d1d185aa675ae0' => 
+    'cb9f32efe50abb8081afad087a555cf6ba0b2b58' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\proyectos\\Marco\\TPEweb2\\templates\\lista.tpl',
-      1 => 1476706927,
+      0 => 'C:\\xampp\\htdocs\\proyectos\\TPEweb2-issue3\\templates\\adminlista.tpl',
+      1 => 1476911679,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_58066d17e4f3d6_16796567 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5807e2c6e96a31_44143494 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
+
 <div class="row">
   <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['peliculas']->value, 'pelicula', false, 'index');

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-10-16 06:54:53
-  from "C:\xampp\htdocs\proyectos\TPEweb2-rama2 (1)\TPEweb2-rama2\templates\editarPelicula.tpl" */
+/* Smarty version 3.1.30, created on 2016-10-19 23:17:01
+  from "C:\xampp\htdocs\proyectos\TPEweb2-issue3\templates\editarPelicula.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5803081da74aa5_62573042',
+  'unifunc' => 'content_5807e2cd5f8339_67126482',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'cdb21a286caa063394560c5d126d4a82a62f05ab' => 
+    'dd8fb8cd5b9d46494a292e823977aef01aefa256' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\proyectos\\TPEweb2-rama2 (1)\\TPEweb2-rama2\\templates\\editarPelicula.tpl',
-      1 => 1476468748,
+      0 => 'C:\\xampp\\htdocs\\proyectos\\TPEweb2-issue3\\templates\\editarPelicula.tpl',
+      1 => 1476911679,
       2 => 'file',
     ),
   ),
@@ -20,13 +20,15 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5803081da74aa5_62573042 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5807e2cd5f8339_67126482 (Smarty_Internal_Template $_smarty_tpl) {
 if (isset($_smarty_tpl->tpl_vars['mensaje']->value)) {?>
     <div class="alert alert-<?php echo $_smarty_tpl->tpl_vars['tipoMensaje']->value;?>
 " role="alert"><?php echo $_smarty_tpl->tpl_vars['mensaje']->value;?>
 </div>
 <?php }?>
 <h1>Editar</h1>
+<div class="contenedor">
+
 <form id="formPeliculaEditar" action="index.php?action=editar_pelicula" method="post" enctype="multipart/form-data">
 
 
@@ -59,7 +61,7 @@ if (isset($_smarty_tpl->tpl_vars['mensaje']->value)) {?>
       <input type="checkbox" name="generos[]" value="terror" > terror<br>
       <input type="checkbox" name="generos[]" value="suspenso"> suspenso<br>
       <input type="checkbox" name="generos[]" value="ciencia-ficcion" > ciencia ficcion<br>
-      <input type="submit" name="Editar" id="editarPeliculaBtn">
+      <input type="submit" class="btn btn-primary" name="Editar" id="editarPeliculaBtn">
 
     </div>
   </div>
@@ -67,6 +69,7 @@ if (isset($_smarty_tpl->tpl_vars['mensaje']->value)) {?>
 </div>
 </div>
 </form>
+</div>
 
 <?php echo '<script'; ?>
  src="js/editarPelicula.js"><?php echo '</script'; ?>

@@ -15,7 +15,6 @@
         <div class="genero">
           {foreach from=$pelicula['generos'] key=index item=genero}
             <a>{$genero}</a>
-
               {/foreach}
           </div>
           </div>

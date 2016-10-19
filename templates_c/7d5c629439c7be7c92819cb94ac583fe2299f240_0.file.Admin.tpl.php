@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-10-19 21:35:28
-  from "C:\xampp\htdocs\proyectos\TPEweb2-rama2\templates\admin.tpl" */
+/* Smarty version 3.1.30, created on 2016-10-19 23:16:54
+  from "C:\xampp\htdocs\proyectos\TPEweb2-issue3\templates\Admin.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5807cb00d40cd7_31465917',
+  'unifunc' => 'content_5807e2c6ccd181_71797170',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '6ab26c5dc89c77c9dff1ce0781fa58f81fee4d9a' => 
+    '7d5c629439c7be7c92819cb94ac583fe2299f240' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\proyectos\\TPEweb2-rama2\\templates\\admin.tpl',
-      1 => 1476905720,
+      0 => 'C:\\xampp\\htdocs\\proyectos\\TPEweb2-issue3\\templates\\Admin.tpl',
+      1 => 1476911679,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:adminlista.tpl' => 1,
   ),
 ),false)) {
-function content_5807cb00d40cd7_31465917 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5807e2c6ccd181_71797170 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <h1>Administrar</h1>
 
@@ -36,15 +36,20 @@ function content_5807cb00d40cd7_31465917 (Smarty_Internal_Template $_smarty_tpl)
     <h3><input type="text" name="titulo"  required value="" placeholder="Titulo" ></h3> <!-- esto es TITULO -->
     <p><textarea name="descripcion" placeholder="Descripcion" id="" cols="30" rows="5" ></textarea></p> <!-- esto es DESCRIPCION -->
     <p><input type="text" name="link"  required value="" placeholder="Ingrese link de la Pelicula" ></p> <!-- esto es LINK -->
+    <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['generos']->value, 'genero', false, 'index');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['index']->value => $_smarty_tpl->tpl_vars['genero']->value) {
+?>
+        <input type="checkbox" name="generos[]" value="<?php echo $_smarty_tpl->tpl_vars['genero']->value['titulo'];?>
+"> <?php echo $_smarty_tpl->tpl_vars['genero']->value['titulo'];?>
+<br>
+    <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
+?>
 
-      <input type="checkbox" name="generos[]" value="aventura"> aventura<br>
-      <input type="checkbox" name="generos[]" value="accion" > accion<br>
-      <input type="checkbox" name="generos[]" value="animada"> animada<br>
-      <input type="checkbox" name="generos[]" value="comedia" > comedia<br>
-      <input type="checkbox" name="generos[]" value="drama"> drama<br>
-      <input type="checkbox" name="generos[]" value="terror" > terror<br>
-      <input type="checkbox" name="generos[]" value="suspenso"> suspenso<br>
-      <input type="checkbox" name="generos[]" value="ciencia-ficcion" > ciencia ficcion<br>
       <input type="submit" class="btn btn-primary" name="Agregar" id="agregarPeliculaBtn"><!-- esto es AGREGAR PELICULA -->
       <button type="submit" class="administrar-generos btn btn-primary">Add Genero</button>
     </div>
