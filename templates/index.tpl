@@ -8,6 +8,7 @@
   <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+
 <div class="contenedor-gral">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -44,6 +45,7 @@
   <div class="container">
     {include file='principal.tpl'}
   </div>
+
 </div>
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="libs/bootstrap/js/bootstrap.min.js"></script>
