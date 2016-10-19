@@ -18,11 +18,6 @@
 
               {/foreach}
           </div>
-
-          <div class="modiff">
-            <p><a href="#" data-idpelicula="{$pelicula['id_pelicula']}"  class="btn btn-primary eliminarPelicula"  role="button" >Eliminar</a>
-               <a href="#" data-idpelicula="{$pelicula['id_pelicula']}" class="btn btn-default editarPelicula" role="button" >Editar</a></p>
-          </div>
           </div>
         </div>
       </div>

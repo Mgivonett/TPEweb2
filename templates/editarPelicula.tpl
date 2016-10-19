@@ -2,6 +2,8 @@
     <div class="alert alert-{$tipoMensaje}" role="alert">{$mensaje}</div>
 {/if}
 <h1>Editar</h1>
+<div class="contenedor">
+
 <form id="formPeliculaEditar" action="index.php?action=editar_pelicula" method="post" enctype="multipart/form-data">
 
 
@@ -29,7 +31,7 @@
       <input type="checkbox" name="generos[]" value="terror" > terror<br>
       <input type="checkbox" name="generos[]" value="suspenso"> suspenso<br>
       <input type="checkbox" name="generos[]" value="ciencia-ficcion" > ciencia ficcion<br>
-      <input type="submit" name="Editar" id="editarPeliculaBtn">
+      <input type="submit" class="btn btn-primary" name="Editar" id="editarPeliculaBtn">
 
     </div>
   </div>
@@ -37,5 +39,6 @@
 </div>
 </div>
 </form>
+</div>
 
 <script src="js/editarPelicula.js"></script>

@@ -18,7 +18,7 @@
       <input type="checkbox" name="generos[]" value="terror" > terror<br>
       <input type="checkbox" name="generos[]" value="suspenso"> suspenso<br>
       <input type="checkbox" name="generos[]" value="ciencia-ficcion" > ciencia ficcion<br>
-      <input type="submit" name="Agregar" id="agregarPeliculaBtn"><!-- esto es AGREGAR PELICULA -->
+      <input type="submit" class="btn btn-primary" name="Agregar" id="agregarPeliculaBtn"><!-- esto es AGREGAR PELICULA -->
 
     </div>
   </div>

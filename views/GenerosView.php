@@ -1,10 +1,10 @@
 <?php
-require('View.php');
+include_once('View.php');
 class GenerosView extends View
 {
   function mostrar($generos){
     $this->smarty->assign('generos',$generos);
-    $this->smarty->display('generos.tpl');
+    $this->smarty->display('adminGeneros.tpl');
   }
 
 }

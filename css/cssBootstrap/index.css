@@ -1,9 +1,8 @@
-.thumbnail
+.contenedor .thumbnail
 {
 
-  background-color: #3c3a3a;
+  background-color: #bfb5b5;
 }
-
 
 .titulo
 {
@@ -32,8 +31,4 @@ text-align: center;
 {
   left: 40%;
   position:relative;;
-}
-.contenedor
-{
-  background-color: black;
 }

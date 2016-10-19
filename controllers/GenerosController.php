@@ -12,6 +12,10 @@ class GenerosController
     $this->vista = new GenerosView();
   }
 
+  function getModelo(){
+    return $this->modelo;
+  }
+  
   function irAAdministrarGeneros(){
     $generos=$this->modelo->getGeneros();
     $this->vista->mostrar($generos);
@@ -19,17 +23,17 @@ class GenerosController
 
   function guardarGenero(){
     $titulo=$_POST['titulo'];
-    print_r($_POST);
     $this->modelo->crearGenero($titulo);
     $generos=$this->modelo->getGeneros();
     $this->vista->mostrar($generos);
   }
   
   function eliminarGenero(){
-    $key = $_GET['id_genero'];
-    $this->modelo->eliminarGenero($key);
+    $id_genero = $_GET['id_genero'];
+    $this->modelo->eliminarGenero($id_genero);
+    $this->modelo->eliminarGeneroPeliculaSegunIdGenero($id_genero);
     $generos = $this->modelo->getGeneros();
-    $this->vista->mostrar($generos);
+    $this->vista->mostrar($generos);;
   }
   
 }
