@@ -23,7 +23,7 @@ class PeliculasController
   
   function actualizarLista(){
     $peliculas = $this->modelo->getPeliculas();
-    $this->vista->getLista($peliculas);
+    $this->vista->getListaParaAdmin($peliculas);
   }
 
   function getImagenVerificada($imagen){
@@ -62,7 +62,7 @@ class PeliculasController
     $key = $_GET['id_pelicula'];
     $this->modelo->eliminarPelicula($key);
     $peliculas = $this->modelo->getPeliculas();
-    $this->vista->getLista($peliculas);
+    $this->vista->getListaParaAdmin($peliculas);
   }
 
   function peliculaAEditar(){
@@ -72,10 +72,10 @@ class PeliculasController
     $this->vista->mostrarPelicula($pelicula,$generos);
   }
 
-  function mostrarVistaPeliculas(){//despues de editar se carga el tpl principal para mostrar las peliculas
+  function mostrarVistaPeliculas(){//despues de editar se carga el tpl adminlista para mostrar las peliculas
     $peliculas = $this->modelo->getPeliculas();
-    $generos = $this->generosController->getModelo()->getGeneros();
-    $this->vista->mostrarPrincipal($peliculas,$generos);
+    //$generos = $this->generosController->getModelo()->getGeneros();
+    $this->vista->getListaParaAdmin($peliculas);
   }
   
   function updateGenerosPelicula($generos,$id_pelicula){//cuando edito compruebo los generos que ya existen en esa pelicula, para no modificarlos, los que no existen, para crearlos y los que ya no estan, borrarlos

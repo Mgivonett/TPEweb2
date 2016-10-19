@@ -17,7 +17,7 @@ $(document).ready(function(){
                 $("input[type=checkbox]").each(function() { this.checked=false; });
             },
             error: function(data){
-                console.log("error");
+                alert("error");
                 console.log(data);
             }
         });
