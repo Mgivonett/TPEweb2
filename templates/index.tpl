@@ -88,6 +88,5 @@
 	<script src="js/detallesPelicula.js"></script>
 	<script src="js/filtroPeliculasXGeneros.js"></script>
 	<script src="js/administradorDePeliculas.js"></script>
-
 </div>
 </body></html>
