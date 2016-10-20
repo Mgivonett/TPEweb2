@@ -44,7 +44,6 @@ class PeliculasController
         $id_generos=$this->generosController->getModelo()->getIdGenerosSegunArregloGeneros($generos);
         $this->modelo->crearPelicula($titulo,$link,$descripcion,$imagenVerificada,$id_generos);
         $this->vista->mostrarMensaje("La pelicula se creo con imagen y todo!", "success");
-        echo "examen pasado con exito";
       }
       else{
         $this->vista->mostrarMensaje("Error con las imagenes", "danger");
