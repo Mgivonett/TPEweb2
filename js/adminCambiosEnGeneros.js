@@ -23,5 +23,13 @@ $(document).ready(function(){
         $.get( "index.php?action=eliminar_genero",{ id_genero: $(this).attr("data-idgenero") }, function(data) {
             $('.container').html(data);
         });
-    })
+    });
+    var liAReemplazar;
+    $('body').on('click','.editarGenero',function(e){
+        e.preventDefault();
+        liAReemplazar=$(this).parent();
+        $.get("index.php?action=ir_a_editar_genero",{ id_genero: $(this).attr("data-idgenero") },function(obj){
+            $(liAReemplazar[0]).html(obj);
+        });
+    });
 });

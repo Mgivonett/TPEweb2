@@ -7,4 +7,8 @@ class GenerosView extends View
     $this->smarty->display('adminGeneros.tpl');
   }
 
+  function mostrarGeneroAEditar($genero){
+    $this->smarty->assign('genero',$genero);
+    $this->smarty->display('editarGenero.tpl');
+  }
 }

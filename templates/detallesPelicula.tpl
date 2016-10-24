@@ -9,5 +9,3 @@
 <br>
 <img src="{$pelicula['imagen']}" alt="imagen-pelicula">
 <input type="hidden" name="id_pelicula" value="{$pelicula['id_pelicula']}"><br>
-
-<script src="js/volverAInicio.js"></script>

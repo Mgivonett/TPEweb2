@@ -82,11 +82,13 @@
 
 
 	<!-- js -->
-	<script src="js/jquery-3.1.1.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="libs/jquery/jquery-3.1.1.min.js"></script>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
 	<script src="libs/bootstrap/js/bootstrap.min.js"></script>
 	<script src="js/detallesPelicula.js"></script>
 	<script src="js/filtroPeliculasXGeneros.js"></script>
 	<script src="js/administradorDePeliculas.js"></script>
+	<script src="js/volverAInicio.js"></script>
+
 </div>
 </body></html>

@@ -1,10 +1,15 @@
 <?php
-require('views/PeliculasView.php');
-require('models/PeliculasModel.php');
+include('models/PeliculasModel.php');
+include_once('views/PeliculasView.php');
+include_once('views/PeliculasFiltradasXGeneroView.php');
+require_once('views/DetallesPeliculaView.php');
+require_once('views/AdministradorPeliculaView.php');
 
 class PeliculasController
 {
   private $vista;
+  private $vistaPeliculasXgenero;
+  private $vistaDetallesPelicula;
   private $modelo;
   private $generosController;
 
@@ -12,6 +17,9 @@ class PeliculasController
   {
     $this->modelo = new PeliculasModel();
     $this->vista = new PeliculasView();
+    $this->vistaPeliculasXgenero = new PeliculasFiltradasXGeneroView();
+    $this->vistaDetallesPelicula = new DetallesPeliculaView();
+    $this->vistaAdministradorPelicula = new AdministradorPeliculaView();
     $this->generosController=$generosController;
   }
 
@@ -23,7 +31,7 @@ class PeliculasController
 
   function actualizarLista(){
     $peliculas = $this->modelo->getPeliculas();
-    $this->vista->getListaParaAdmin($peliculas);
+    $this->vistaAdministradorPelicula->getListaParaAdmin($peliculas);
   }
 
   function getImagenVerificada($imagen){
@@ -33,12 +41,11 @@ class PeliculasController
   }
 
   function guardar(){
-    $titulo = $_POST['titulo'];
-    $link = $_POST['link'];
-    $descripcion = $_POST['descripcion'];
-    $generos = $_POST['generos'];
-
-    if(isset($_FILES['imagen'])){
+    if(isset($_FILES['imagen'])&&isset($_POST['titulo'])&&isset($_POST['link'])&&isset($_POST['descripcion'])&&isset($_POST['generos'])){
+      $titulo = $_POST['titulo'];
+      $link = $_POST['link'];
+      $descripcion = $_POST['descripcion'];
+      $generos = $_POST['generos'];
       $imagenVerificada = $this->getImagenVerificada($_FILES['imagen']);
       if((count($imagenVerificada)>0) && (count($generos)>0)){
         $id_generos=$this->generosController->getModelo()->getIdGenerosSegunArregloGeneros($generos);
@@ -50,7 +57,7 @@ class PeliculasController
       }
     }
     else{
-      $this->vista->mostrarMensaje("La imagen es requerida","danger");
+      $this->vista->mostrarMensaje("Error. uno o mas campos no completados","danger");
     }
 
     $this->actualizarLista();
@@ -61,20 +68,25 @@ class PeliculasController
     $key = $_GET['id_pelicula'];
     $this->modelo->eliminarPelicula($key);
     $peliculas = $this->modelo->getPeliculas();
-    $this->vista->getListaParaAdmin($peliculas);
+    $this->vistaAdministradorPelicula->getListaParaAdmin($peliculas);
   }
 
   function peliculaAEditar(){
     $key = $_GET['id_pelicula'];
     $pelicula=$this->modelo->getPeliculaXId($key);
     $generos = $this->generosController->getModelo()->getGeneros();//$this->modelo->getGeneros();
-    $this->vista->mostrarPelicula($pelicula,$generos);
+    $this->vistaAdministradorPelicula->mostrarPelicula($pelicula,$generos);
   }
 
-  function mostrarVistaPeliculas(){//despues de editar se carga el tpl adminlista para mostrar las peliculas
+  function mostrarVistaAdmnistradorPeliculas(){//despues de editar se carga el tpl adminlista para mostrar las peliculas
     $peliculas = $this->modelo->getPeliculas();
     $generos = $this->generosController->getModelo()->getGeneros();
-    $this->vista->mostrarAdministradorDePeliculas($peliculas,$generos);
+    $this->vistaAdministradorPelicula->mostrarAdministradorDePeliculas($peliculas,$generos);
+  }
+  
+  function mostrarVistaPeliculas(){
+    $peliculas = $this->modelo->getPeliculas();
+    $this->vista->getLista($peliculas);
   }
 
   function updateGenerosPelicula($generos,$id_pelicula){//cuando edito compruebo los generos que ya existen en esa pelicula, para no modificarlos, los que no existen, para crearlos y los que ya no estan, borrarlos
@@ -93,46 +105,54 @@ class PeliculasController
   }
 
   function editar(){
-    $id_pelicula=$_POST['id_pelicula'];
-    $titulo = $_POST['titulo'];
-    $link = $_POST['link'];
-    $descripcion = $_POST['descripcion'];
-    $generos = $_POST['generos'];
-    if(!empty($_FILES['imagen']['name'])){  //si se agrego una imagen al formulalrio para cambiar la actual
-      $imagenVerificada = $this->getImagenVerificada($_FILES['imagen']);
-      if((count($imagenVerificada)>0) && (count($generos)>0)){
-        $pelicula=$this->modelo->getPeliculaXId($id_pelicula);
-        $this->modelo->desvincularImgAnterior($pelicula['imagen']);
-        $imagen=$this->modelo->imagenUpload($imagenVerificada);
-        $this->updateGenerosPelicula($generos,$id_pelicula);
-        $this->modelo->editarPelicula($titulo,$link,$descripcion,$imagen,$id_pelicula);
-        $this->mostrarVistaPeliculas();
+    if(isset($_POST['id_pelicula'])&&isset($_POST['titulo'])&&isset($_POST['link'])&&isset($_POST['descripcion'])&&isset($_POST['generos'])){
+      $id_pelicula=$_POST['id_pelicula'];
+      $titulo = $_POST['titulo'];
+      $link = $_POST['link'];
+      $descripcion = $_POST['descripcion'];
+      $generos = $_POST['generos'];
+      if(!empty($_FILES['imagen']['name'])){  //si se agrego una imagen al formulalrio para cambiar la actual
+        $imagenVerificada = $this->getImagenVerificada($_FILES['imagen']);
+        if((count($imagenVerificada)>0) && (count($generos)>0)){
+          $pelicula=$this->modelo->getPeliculaXId($id_pelicula);
+          $this->modelo->desvincularImgAnterior($pelicula['imagen']);
+          $imagen=$this->modelo->imagenUpload($imagenVerificada);
+          $this->updateGenerosPelicula($generos,$id_pelicula);
+          $this->modelo->editarPelicula($titulo,$link,$descripcion,$imagen,$id_pelicula);
+          $this->mostrarVistaAdmnistradorPeliculas();
+        }
+        else if(count($generos)>0){ //pelicula editada, pero conservando la imagen anterior porque no paso la verificacion
+          $this->updateGenerosPelicula($generos,$id_pelicula);
+          $this->modelo->editarPeliculaSinImagen($titulo,$link,$descripcion,$id_pelicula);
+          $this->mostrarVistaAdmnistradorPeliculas();
+        }
+        else{
+          $this->vista->mostrarMensaje("Error con los generos", "danger");
+          $this->mostrarVistaAdmnistradorPeliculas();
+        }
       }
-      else if(count($generos)>0){ //pelicula editada, pero conservando la imagen anterior porque no paso la verificacion
-        $this->updateGenerosPelicula($generos,$id_pelicula);
-        $this->modelo->editarPeliculaSinImagen($titulo,$link,$descripcion,$id_pelicula);
-        $this->mostrarVistaPeliculas();
-      }
-      else{
-        $this->vista->mostrarMensaje("Error con los generos", "danger");
+      else {
+        if(count($generos)>0){//pelicula editada, pero conservando la imagen anterior porque no se agrego al formulario
+          $this->updateGenerosPelicula($generos,$id_pelicula);
+          $this->modelo->editarPeliculaSinImagen($titulo,$link,$descripcion,$id_pelicula);
+          $this->mostrarVistaAdmnistradorPeliculas();
+        }
+        else{
+          $this->vista->mostrarMensaje("Error con los generos", "danger");
+          $this->mostrarVistaAdmnistradorPeliculas();
+        }
       }
     }
-    else {
-      if(count($generos)>0){//pelicula editada, pero conservando la imagen anterior porque no se agrego al formulario
-        $this->updateGenerosPelicula($generos,$id_pelicula);
-        $this->modelo->editarPeliculaSinImagen($titulo,$link,$descripcion,$id_pelicula);
-        $this->mostrarVistaPeliculas();
-      }
-      else{
-      $this->vista->mostrarMensaje("Error con los generos", "danger");
-      }
+    else{
+      $this->vista->mostrarMensaje("Error. uno o varios campos no completados", "danger");
+      $this->mostrarVistaAdmnistradorPeliculas();
     }
   }
 
   function getPelicula(){
     $id_pelicula=$_GET['id_pelicula'];
     $pelicula=$this->modelo->getPeliculaXId($id_pelicula);
-    $this->vista->getPelicula($pelicula);
+    $this->vistaDetallesPelicula->getPelicula($pelicula);
   }
 
   function mostrarPeliculasXGenero(){
@@ -144,14 +164,14 @@ class PeliculasController
       $this->vista->mostrarMensaje("No existen peliculas con ese genero", "danger");
     }
     else{
-      $this->vista->mostrarPeliculasDelGenero($peliculasXgenero,$generos);
+      $this->vistaPeliculasXgenero->mostrarPeliculasDelGenero($peliculasXgenero,$generos);
     }
 
   }
   function irAAdministradorDePeliculas(){
     $peliculas = $this->modelo->getPeliculas();
     $generos = $this->generosController->getModelo()->getGeneros();
-    $this->vista->mostrarAdministradorDePeliculas($peliculas,$generos);
+    $this->vistaAdministradorPelicula->mostrarAdministradorDePeliculas($peliculas,$generos);
   }
 }
  ?>

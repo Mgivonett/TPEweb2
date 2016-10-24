@@ -32,13 +32,19 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
     $controller->editar();
     break;
   case ConfigApp::$ACTION_MOSTRAR_PELICULAS_X_GENERO:
-    $controller->mostrarPeliculasXGenero();//cambiar a mostrar las peliculas segun el genero seleccionado
+    $controller->mostrarPeliculasXGenero();
     break;
   case ConfigApp::$ACTION_IR_A_ADMINISTRAR_GENEROS:
     $generosController->irAAdministrarGeneros();
     break;
   case ConfigApp::$ACTION_GUARDAR_GENERO:
     $generosController->guardarGenero();
+    break;
+  case ConfigApp::$ACTION_IR_A_EDITAR_GENERO:
+    $generosController->generoAEditar();
+    break;
+  case ConfigApp::$ACTION_EDITAR_GENERO:
+    $generosController->editarGenero();
     break;
   case ConfigApp::$ACTION_ELIMINAR_GENERO:
     $generosController->eliminarGenero();
