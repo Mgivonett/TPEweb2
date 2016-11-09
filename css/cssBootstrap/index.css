@@ -1,0 +1,34 @@
+.contenedor .thumbnail
+{
+
+  background-color: #bfb5b5;
+}
+
+.titulo
+{
+  text-align: center;
+  color: grey;
+  font-size: 30px;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.descripcion
+{
+text-align: center;
+color: black;
+font-size: 20px;
+}
+.genero
+{
+  text-align: center;
+}
+.modiff p
+{
+text-align: center;
+}
+.formulario
+{
+  left: 40%;
+  position:relative;;
+}

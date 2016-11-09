@@ -8,24 +8,30 @@ class PeliculasView extends View
     $this->smarty->assign('error',$error);
   }
 
+<<<<<<< HEAD
   function mostrarMensaje($mensaje, $tipo){
     $this->smarty->assign('mensaje',$mensaje);
     $this->smarty->assign('tipoMensaje',$tipo);
     $this->smarty->display('mensaje.tpl');
   }
 
+=======
+>>>>>>> marco
   function mostrar($peliculas,$generos){
     $this->smarty->assign('peliculas',$peliculas);
     $this->smarty->assign('generos',$generos);
     $this->smarty->display('index.tpl');
   }
 
+<<<<<<< HEAD
   function mostrarPeliculasDelGenero($peliculas,$generos){
     $this->smarty->assign('peliculas',$peliculas);
     $this->smarty->assign('generos',$generos);
     $this->smarty->display('lista.tpl');
   }
 
+=======
+>>>>>>> marco
   function mostrarPrincipal($peliculas,$generos){
     $this->smarty->assign('peliculas',$peliculas);
     $this->smarty->assign('generos',$generos);
@@ -37,6 +43,7 @@ class PeliculasView extends View
     $this->smarty->display('lista.tpl');
   }
   
+<<<<<<< HEAD
   function getListaParaAdmin($peliculas){
     $this->smarty->assign('peliculas',$peliculas);
     $this->smarty->display('adminlista.tpl');
@@ -58,6 +65,8 @@ class PeliculasView extends View
     $this->smarty->assign('generos',$generos);
     $this->smarty->display('Admin.tpl');
   }
+=======
+>>>>>>> marco
 }
 
  ?>
