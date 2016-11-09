@@ -23,9 +23,6 @@ $(document).ready(function(){
         $.get( "index.php?action=eliminar_genero",{ id_genero: $(this).attr("data-idgenero") }, function(data) {
             $('.container').html(data);
         });
-<<<<<<< HEAD
-    })
-=======
     });
     var liAReemplazar;
     $('body').on('click','.editarGenero',function(e){
@@ -35,5 +32,4 @@ $(document).ready(function(){
             $(liAReemplazar[0]).html(obj);
         });
     });
->>>>>>> marco
 });

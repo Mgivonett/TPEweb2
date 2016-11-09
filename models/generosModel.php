@@ -31,23 +31,6 @@ class GenerosModel{
     }
     return $this->generoExiste;//quiere decir que e genero pasado por parametro ya existe y por lo tanto no se crea ne la tabla Genero
   }
-  //creacionDeGeneros($generos,$id_pelicula){ NO VA
-<<<<<<< HEAD
-  function creacionDeGeneros($generos,$id_pelicula){
-=======
-/*  function creacionDeGeneros($generos,$id_pelicula){
->>>>>>> marco
-    foreach ($generos as $genero) {
-      $id_genero=$this->crearGenero($genero);
-      if($id_genero!=$this->generoExiste){
-        $this->crearGeneroPelicula($id_genero,$id_pelicula);//crear regitro en la tabla genero_pelicula
-      }
-    }
-<<<<<<< HEAD
-  }
-=======
-  }*/
->>>>>>> marco
   
   function getIdGenero($genero)
   {
@@ -77,13 +60,11 @@ class GenerosModel{
     $sentencia = $this->db->prepare("INSERT INTO genero_pelicula(fk_id_pelicula,fk_id_genero) VALUES(?,?)");
     $sentencia->execute(array($id_pelicula,$id_genero));
   }
-<<<<<<< HEAD
-=======
 
   function editarGenero($tituloGenero,$id_genero){
     $sentencia= $this->db->prepare("UPDATE genero set titulo=? WHERE id_genero=?");
     $sentencia->execute(array($tituloGenero,$id_genero));
   }
->>>>>>> marco
+
 }
 ?>

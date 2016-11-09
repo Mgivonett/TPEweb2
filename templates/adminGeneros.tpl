@@ -5,19 +5,6 @@
     <input type="text" name="titulo"  required><br>
     <input type="submit" name="guardar-genero" id="guargarGeneroBtn">
 </form>
-<<<<<<< HEAD
-<ul class="lista-de-generos">
-    {foreach from=$generos key=index item=genero}
-        <li>{$genero['titulo']}
-            <a class="eliminarGenero" href="#" data-idgenero="{$genero['id_genero']}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-        </li>
-    {/foreach}
-</ul>
-
-<script src="js/adminCambiosEnGeneros.js"></script>
-<script src="js/volverAInicio.js"></script>
-=======
-
 <ul class="lista-de-generos">
     {foreach from=$generos key=index item=genero}
     <li class="genero">
@@ -28,4 +15,3 @@
     {/foreach}
 </ul>
 <script src="js/adminCambiosEnGeneros.js"></script>
->>>>>>> marco

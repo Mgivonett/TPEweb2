@@ -32,11 +32,7 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
     $controller->editar();
     break;
   case ConfigApp::$ACTION_MOSTRAR_PELICULAS_X_GENERO:
-<<<<<<< HEAD
-    $controller->mostrarPeliculasXGenero();//cambiar a mostrar las peliculas segun el genero seleccionado
-=======
     $controller->mostrarPeliculasXGenero();
->>>>>>> marco
     break;
   case ConfigApp::$ACTION_IR_A_ADMINISTRAR_GENEROS:
     $generosController->irAAdministrarGeneros();
@@ -44,15 +40,12 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
   case ConfigApp::$ACTION_GUARDAR_GENERO:
     $generosController->guardarGenero();
     break;
-<<<<<<< HEAD
-=======
   case ConfigApp::$ACTION_IR_A_EDITAR_GENERO:
     $generosController->generoAEditar();
     break;
   case ConfigApp::$ACTION_EDITAR_GENERO:
     $generosController->editarGenero();
     break;
->>>>>>> marco
   case ConfigApp::$ACTION_ELIMINAR_GENERO:
     $generosController->eliminarGenero();
     break;
@@ -67,8 +60,6 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
     $controller->iniciar();
     break;
 }
-<<<<<<< HEAD
+
 ?>
-=======
-?>
->>>>>>> marco
+

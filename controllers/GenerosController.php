@@ -22,12 +22,6 @@ class GenerosController
   }
 
   function guardarGenero(){
-<<<<<<< HEAD
-    $titulo=$_POST['titulo'];
-    $this->modelo->crearGenero($titulo);
-    $generos=$this->modelo->getGeneros();
-    $this->vista->mostrar($generos);
-=======
     if(isset($_POST['titulo'])){
       $titulo=$_POST['titulo'];
       $this->modelo->crearGenero($titulo);
@@ -61,7 +55,6 @@ class GenerosController
       $generos=$this->modelo->getGeneros();
       $this->vista->mostrar($generos);
     }
->>>>>>> marco
   }
   
   function eliminarGenero(){
@@ -69,11 +62,7 @@ class GenerosController
     $this->modelo->eliminarGenero($id_genero);
     $this->modelo->eliminarGeneroPeliculaSegunIdGenero($id_genero);
     $generos = $this->modelo->getGeneros();
-<<<<<<< HEAD
-    $this->vista->mostrar($generos);;
-=======
     $this->vista->mostrar($generos);
->>>>>>> marco
   }
   
 }
