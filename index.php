@@ -1,16 +1,18 @@
 <?php
 include('controllers/PeliculasController.php');
 include('controllers/GenerosController.php');
+include('controllers/LoginController.php');
 require ('config/ConfigApp.php');
 
 $generosController = new GenerosController();
 $controller = new PeliculasController($generosController);
+$loginController= new LoginController();
 
-if (!array_key_exists(ConfigApp::$ACTION,$_REQUEST)){
-  $controller->iniciar();
+/*if (!array_key_exists(ConfigApp::$ACTION,$_REQUEST)){
+  $loginController->iniciar("sarasa");
   
   die();
-}
+}*/
 
 switch ($_REQUEST[ConfigApp::$ACTION]) {
   case ConfigApp::$ACTION_MOSTRAR_PELICULAS:
@@ -55,9 +57,12 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
   case ConfigApp::$ACTION_HOME:
     $controller->mostrarVistaPeliculas();
     break;
+  case ConfigApp::$ACTION_LOGIN:
+    $controller->irAAdministradorDePeliculas();
+    break;
   default:
 
-    $controller->iniciar();
+    $loginController->iniciar("sarasa");
     break;
 }
 
