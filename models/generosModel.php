@@ -1,12 +1,9 @@
 <?php
-class GenerosModel{
+include_once ('Model.php');
+class GenerosModel extends Model{
   private $generos;
-  private $db;
   private $generoExiste=-1;
-  function __construct()
-  {
-    $this->db = new PDO('mysql:host=localhost;dbname=base_peliculas;charset=utf8', 'root', '');
-  }
+
   
   function getGeneros(){
     $sentencia = $this->db->prepare( "select * from genero");

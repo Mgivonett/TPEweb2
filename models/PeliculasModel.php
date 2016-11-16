@@ -1,14 +1,8 @@
 <?php
-
-class PeliculasModel{
+include_once ('Model.php');
+class PeliculasModel extends Model{
   private $peliculas;
-  private $db;
 
-  function __construct()
-  {
-    $this->db = new PDO('mysql:host=localhost;dbname=base_peliculas;charset=utf8', 'root', '');
-  }
-  
   function getGeneroXId($id_genero){//Retorna el titulo de un genero de acuerdo al ID pasado como parametro
       $sentencia = $this->db->prepare( "select titulo from genero where id_genero=?");
       $sentencia->execute(array($id_genero));
@@ -20,6 +14,7 @@ class PeliculasModel{
       $sentencia->execute(array($id_pelicula));
       $pelicula = $sentencia->fetch(PDO::FETCH_ASSOC);
       $pelicula['generos']=$this->getGenerosSegunIdPelicula($pelicula['id_pelicula']);//agregado de generos a la pelicula
+      $pelicula['imagenes']=$this->getImagenesSegunIdPelicula($pelicula['id_pelicula']);
       return $pelicula;
   }
   function getGenerosSegunIdPelicula($id_pelicula){//Devuelve la lista de titulos de los generos de una pelicula
@@ -48,6 +43,7 @@ class PeliculasModel{
     $peliculas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     foreach ($peliculas as $key => $pelicula) {
       $peliculas[$key]['generos']=$this->getGenerosSegunIdPelicula($pelicula['id_pelicula']);
+      $peliculas[$key]['imagenes']=$this->getImagenesSegunIdPelicula($pelicula['id_pelicula']);
     }
     return $peliculas;
   }
@@ -59,16 +55,37 @@ class PeliculasModel{
     $id_genero = $sentencia->fetch(PDO::FETCH_ASSOC);
     return $id_genero['id_genero'];
   }
-  function crearPelicula($titulo,$link,$descripcion, $imagen,$id_generos){
-    $path=$this->imagenUpload($imagen);
-    $sentencia = $this->db->prepare("INSERT INTO pelicula(titulo,link,imagen,descripcion) VALUES(?,?,?,?)");
-    $sentencia->execute(array($titulo,$link,$path,$descripcion));
+//----------------------------get de imagenes-----------------------------
+  function getImagenesSegunIdPelicula($id_pelicula){
+    $imagenesArr=$this->db->prepare("SELECT * FROM imagen WHERE fk_id_pelicula=?");
+    $imagenesArr->execute(array($id_pelicula));
+    $imagenes=$imagenesArr->fetchAll(PDO::FETCH_ASSOC);
+    return $imagenes;
+  }
+  //--------------------------------------------------------------------
+  function crearPelicula($titulo,$link,$descripcion,$id_generos,$imagenes){
+    $sentencia = $this->db->prepare("INSERT INTO pelicula(titulo,link,descripcion) VALUES(?,?,?)");
+    $sentencia->execute(array($titulo,$link,$descripcion));
     $id_pelicula = $this->db->lastInsertId();
+    $this->crearImagenes($id_pelicula,$imagenes);
     //agrega a la tabla GeneroPelicula todos los generos que fueron seleccionados para esa pelicula
     foreach ($id_generos as $id_genero){
       $this->crearGeneroPelicula($id_genero,$id_pelicula);
     }
-    
+  }
+
+  function imagenUpload($imagen){
+    $path="images/".uniqid()."_".$imagen["name"];
+    move_uploaded_file($imagen["tmp_name"],$path);
+    return $path;
+  }
+
+  function crearImagenes($id_pelicula,$imagenes){
+    foreach ($imagenes as $imagen){
+      $path=$this->imagenUpload($imagen);
+      $imgACrear=$this->db->prepare("INSERT INTO imagen(direccion,fk_id_pelicula) VALUES (?,?)");
+      $imgACrear->execute(array($path,$id_pelicula));
+    }
   }
 
   function crearGeneroPelicula($id_genero,$id_pelicula){//crear regitro en la tabla genero_pelicula
@@ -94,12 +111,6 @@ class PeliculasModel{
 
   function desvincularImgAnterior($imagen){
     unlink($imagen);
-  }
-
-  function imagenUpload($imagen){
-    $path="images/".uniqid()."_".$imagen["name"];
-    move_uploaded_file($imagen["tmp_name"],$path);
-    return $path;
   }
 
   function editarPelicula($titulo,$link,$descripcion,$imagen,$id_pelicula){

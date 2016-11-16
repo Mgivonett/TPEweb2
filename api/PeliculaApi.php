@@ -1,26 +1,26 @@
 <?php
 require 'api.php';
-require '../models/TareasModel.php';
+require '../models/PeliculasModel.php';
 
-class TareaApi extends Api
+class PeliculaApi extends Api
 {
   private $model;
 
   public function __construct($request)
  {
     parent::__construct($request);
-    $this->model = new TareasModel();
+    $this->model = new PeliculasModel();
   }
 
-  protected function tarea($argumentos){
+  protected function pelicula($argumentos){
     switch ($this->method) {
       case 'GET':
           if(count($argumentos)>0){
-            $tarea = $this->model->getTarea($argumentos[0]);
-            $error['Error'] = "La tarea no existe";
-            return ($tarea) ? $tarea : $error;
+            $pelicula = $this->model->getPeliculaXId($argumentos[0]);
+            $error['Error'] = "La pelicula no existe";
+            return ($pelicula) ? $pelicula : $error;
           }else{
-            return $this->model->getTareas();
+            return $this->model->getPeliculas();
           }
         break;
       case 'DELETE':

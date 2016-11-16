@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
-                    <input type="file" name="imagen" required value="">  <!-- esto es la IMAGEN -->
+                    <input type="file" name="imagenes[]" required value="" multiple>  <!-- esto es un input para las IMAGENES -->
 
                     <div class="caption">
                         <h3><input type="text" name="titulo" required value="" placeholder="Titulo"></h3>

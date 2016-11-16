@@ -7,5 +7,7 @@
 {/foreach}
 </div>
 <br>
-<img src="{$pelicula['imagen']}" alt="imagen-pelicula">
+{foreach from=$pelicula['imagenes'] key=index item=imagen}
+    <img src="{$imagen['direccion']}" data-idimagen="{$imagen['id_imagen']}" alt="Responsive image">
+{/foreach}
 <input type="hidden" name="id_pelicula" value="{$pelicula['id_pelicula']}"><br>

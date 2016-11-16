@@ -1,0 +1,23 @@
+{{#paquete}}
+   <div class="col-sm-5 col-md-3">
+       <div class="thumbnail">
+           <img src="{{imagen}}" alt="Responsive image" class="pelicula-img" data-idpelicula="{{id_pelicula}}">
+           <div class="caption">
+               <div class="titulo">
+                   <h3>{{titulo}}</h3>
+               </div>
+
+               <div class="descripcion">
+                   <p>{{'descripcion}}</p>
+               </div>
+
+               <div class="genero">
+                   {{#generos}}
+                       <a>{{titulo}}</a>
+                   {{/generos}}
+               </div>
+               <p><a class="btn btn-primary" role="button" href="{{link}}">Ver</a></p>
+           </div>
+       </div>
+   </div>
+{{/paquete}}

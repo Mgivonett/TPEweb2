@@ -3,7 +3,7 @@
     {foreach from=$peliculas key=index item=pelicula}
         <div class="col-sm-5 col-md-3">
             <div class="thumbnail">
-                <img src="{$pelicula['imagen']}" alt="Responsive image" class="pelicula-img" data-idpelicula="{$pelicula['id_pelicula']}">
+                <img src="{$pelicula['imagenes'][0]['direccion']}" alt="Responsive image" class="pelicula-img" data-idpelicula="{$pelicula['id_pelicula']}">
                 <div class="caption">
                     <div class="titulo">
                         <h3>{$pelicula['titulo']}</h3>

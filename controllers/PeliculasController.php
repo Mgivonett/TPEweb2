@@ -35,24 +35,30 @@ class PeliculasController
     $this->vistaAdministradorPelicula->getListaParaAdmin($peliculas);
   }
 
-  function getImagenVerificada($imagen){
-      if($imagen['size']>0 && $imagen['type']=="image/jpeg"){
-          return $imagen;
+  function getImagenesVerificadas($imagenes){
+    $imagenesVerificadas = [];
+    for ($i=0; $i < count($imagenes['size']); $i++) {
+      if($imagenes['size'][$i]>0 && $imagenes['type'][$i]=="image/jpeg"){
+        $imagen_aux = [];
+        $imagen_aux['tmp_name']=$imagenes['tmp_name'][$i];
+        $imagen_aux['name']=$imagenes['name'][$i];
+        $imagenesVerificadas[]=$imagen_aux;
       }
+    }
+    return $imagenesVerificadas;
   }
-
+  
   function guardar(){
-    if(isset($_FILES['imagen'])&&isset($_POST['titulo'])&&isset($_POST['link'])&&isset($_POST['descripcion'])&&isset($_POST['generos'])){
+    if(isset($_FILES['imagenes'])&&isset($_POST['titulo'])&&isset($_POST['link'])&&isset($_POST['descripcion'])&&isset($_POST['generos'])){
       $titulo = $_POST['titulo'];
       $link = $_POST['link'];
       $descripcion = $_POST['descripcion'];
       $generos = $_POST['generos'];
-      $imagenVerificada = $this->getImagenVerificada($_FILES['imagen']);
-      if((count($imagenVerificada)>0) && (count($generos)>0)){
+      $imagenesVerificadas = $this->getImagenesVerificadas($_FILES['imagenes']);
+      if((count($imagenesVerificadas)>0) && (count($generos)>0)){
         $id_generos=$this->generosController->getModelo()->getIdGenerosSegunArregloGeneros($generos);
-        $this->modelo->crearPelicula($titulo,$link,$descripcion,$imagenVerificada,$id_generos);
+        $this->modelo->crearPelicula($titulo,$link,$descripcion,$id_generos,$imagenesVerificadas);
         $this->vista->mostrarMensaje("La pelicula se creo con imagen y todo!", "success");
-
       }
       else{
         $this->vista->mostrarMensaje("Error con las imagenes", "danger");
@@ -60,11 +66,8 @@ class PeliculasController
     }
     else{
       $this->vista->mostrarMensaje("Error. uno o mas campos no completados","danger");
-
     }
-
     $this->actualizarLista();
-
   }
 
   function eliminar(){
@@ -156,6 +159,7 @@ class PeliculasController
   function getPelicula(){
     $id_pelicula=$_GET['id_pelicula'];
     $pelicula=$this->modelo->getPeliculaXId($id_pelicula);
+    $this->vistaDetallesPelicula->getPelicula($pelicula);
   }
 
   function mostrarPeliculasXGenero(){

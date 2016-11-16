@@ -11,8 +11,9 @@
         <div class="row">
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
-
-                    <img src="{$pelicula['imagen']}" alt="Responsive image">
+                    {foreach from=$pelicula['imagenes'] key=index item=imagen}
+                    <img src="{$imagen['direccion']}" data-idimagen="{$imagen['id_imagen']}" alt="Responsive image">
+                    {/foreach}
                     <input type="file" name="imagen">
                     <input type="hidden" name="id_pelicula" value="{$pelicula['id_pelicula']}"><br>
 
