@@ -6,3 +6,6 @@ git push origin <branch>
 git checkout master // para posicionarte en la ramas master.
 git pull
 git merge <branch>
+
+
+git checkout -b <name_branch> //sirve para crear una rama nueva en el repositorio local con el nombre <name_branch>

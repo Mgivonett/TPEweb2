@@ -7,6 +7,7 @@ html {
 }
 
 .logmod {
+  color: white;
   display: block;
   position: fixed;
   top: 0;
@@ -300,7 +301,7 @@ html {
   font-size: 14px;
   background: #FFF;
   overflow: hidden;
-  color: #444;
+  color: black;
   cursor: pointer;
   margin-top: 12px;
   line-height: 48px;
@@ -604,4 +605,8 @@ html {
   height: 100%;
   z-index: 999999;
   background-image: url(http://basehold.it/i/24);
+}
+
+input.optional{
+  color:black;
 }

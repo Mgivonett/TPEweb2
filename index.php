@@ -1,18 +1,18 @@
 <?php
-include('controllers/PeliculasController.php');
-include('controllers/GenerosController.php');
-include('controllers/LoginController.php');
-require ('config/ConfigApp.php');
+include_once('controllers/PeliculasController.php');
+include_once('controllers/GenerosController.php');
+include_once('controllers/LoginController.php');
+require_once ('config/ConfigApp.php');
 
 $generosController = new GenerosController();
-$controller = new PeliculasController($generosController);
 $loginController= new LoginController();
+$controller = new PeliculasController($generosController,$loginController);
 
-/*if (!array_key_exists(ConfigApp::$ACTION,$_REQUEST)){
-  $loginController->iniciar("sarasa");
+if (!array_key_exists(ConfigApp::$ACTION,$_REQUEST)){
+  $controller->iniciar();
   
   die();
-}*/
+}
 
 switch ($_REQUEST[ConfigApp::$ACTION]) {
   case ConfigApp::$ACTION_MOSTRAR_PELICULAS:
@@ -57,12 +57,17 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
   case ConfigApp::$ACTION_HOME:
     $controller->mostrarVistaPeliculas();
     break;
+  case ConfigApp::$ACTION_IR_A_LOGIN:
+    $loginController->iniciar([]);
+    break;
   case ConfigApp::$ACTION_LOGIN:
-    $controller->irAAdministradorDePeliculas();
+    $loginController->login();
+    break;
+  case ConfigApp::$ACTION_LOGOUT:
+    $loginController->logout();
     break;
   default:
-
-    $loginController->iniciar("sarasa");
+    $controller->iniciar();
     break;
 }
 

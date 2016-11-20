@@ -5,6 +5,8 @@ include_once('views/PeliculasView.php');
 include_once('views/PeliculasFiltradasXGeneroView.php');
 require_once('views/DetallesPeliculaView.php');
 require_once('views/AdministradorPeliculaView.php');
+require_once('controllers/GenerosController.php');
+require_once('controllers/LoginController.php');
 
 class PeliculasController
 {
@@ -13,13 +15,15 @@ class PeliculasController
   private $modelo;
   private $generosController;
   private $vista;
-
-  function __construct($generosController)
+  private $loginController;
+  
+  function __construct($generoController,$loginController)
   {
     $this->vistaPeliculasXgenero = new PeliculasFiltradasXGeneroView();
     $this->vistaDetallesPelicula = new DetallesPeliculaView();
     $this->vistaAdministradorPelicula = new AdministradorPeliculaView();
-    $this->generosController=$generosController;
+    $this->generosController=$generoController;
+    $this->loginController=$loginController;
     $this->vista=new PeliculasView();
     $this->modelo=new PeliculasModel();
   }
@@ -27,9 +31,10 @@ class PeliculasController
   function iniciar(){
     $peliculas = $this->modelo->getPeliculas();
     $generos= $this->generosController->getModelo()->getGeneros();
-    $this->vista->mostrar($peliculas,$generos);
+    $usuarioLogueado=$this->loginController->usuarioLogueado();
+    $this->vista->mostrar($peliculas,$generos,$usuarioLogueado);
   }
-
+  
   function actualizarLista(){
     $peliculas = $this->modelo->getPeliculas();
     $this->vistaAdministradorPelicula->getListaParaAdmin($peliculas);
