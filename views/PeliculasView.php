@@ -8,9 +8,11 @@ class PeliculasView extends View
     $this->smarty->assign('error',$error);
   }
     
-  function mostrar($peliculas,$generos){
+  function mostrar($peliculas,$generos,$usuarioLogueado){
     $this->smarty->assign('peliculas',$peliculas);
     $this->smarty->assign('generos',$generos);
+    $this->smarty->assign('usuario',$usuarioLogueado['email']);
+    $this->smarty->assign('admin',$usuarioLogueado['admin']);
     $this->smarty->display('index.tpl');
   }
     

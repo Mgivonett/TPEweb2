@@ -1,14 +1,14 @@
 <?php
-include('controllers/PeliculasController.php');
-include('controllers/GenerosController.php');
-require ('config/ConfigApp.php');
-require ('controller/UsuariosController.php');
+include_once('controllers/PeliculasController.php');
+include_once('controllers/GenerosController.php');
+include_once('controllers/LoginController.php');
+include_once ('controllers/SingUpController.php');
+require_once ('config/ConfigApp.php');
 
 $generosController = new GenerosController();
-$controller = new PeliculasController($generosController);
-$c_usuarios = new UsuariosController();
-
-$controllers = ['Usuarios' =>  $c_usuarios];
+$loginController= new LoginController();
+$SingUpController = new SingUp();
+$controller = new PeliculasController($generosController,$loginController);
 
 if (!array_key_exists(ConfigApp::$ACTION,$_REQUEST)){
   $controller->iniciar();
@@ -59,8 +59,18 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
   case ConfigApp::$ACTION_HOME:
     $controller->mostrarVistaPeliculas();
     break;
+  case ConfigApp::$ACTION_IR_A_LOGIN:
+    $loginController->iniciar([]);
+    break;
+  case ConfigApp::$ACTION_LOGIN:
+    $loginController->login();
+    break;
+  case ConfigApp::$ACTION_LOGOUT:
+    $loginController->logout();
+    break;
+  case ConfigApp::$ACTION_SINGUP:
+    $SingUpController->crearUsuario();
   default:
-
     $controller->iniciar();
     break;
 }
