@@ -51,6 +51,9 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
   case ConfigApp::$ACTION_ELIMINAR_GENERO:
     $generosController->eliminarGenero();
     break;
+  case ConfigApp::$ACTION_ELIMINAR_IMAGEN:
+    $controller->eliminarImagen();
+    break;
   case ConfigApp::$ACTION_IR_A_ADMINISTRAR_PELICULAS:
     $controller->irAAdministradorDePeliculas();
     break;
@@ -65,6 +68,9 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
     break;
   case ConfigApp::$ACTION_LOGOUT:
     $loginController->logout();
+    break;
+  case ConfigApp::$ACTION_PRINCIPAL:
+    $controller->mostrarPrincipal();
     break;
   default:
     $controller->iniciar();

@@ -14,10 +14,13 @@ class ConfigApp{
   public static $ACTION_IR_A_EDITAR_GENERO = 'ir_a_editar_genero';
   public static $ACTION_EDITAR_GENERO = 'editar_genero';
   public static $ACTION_ELIMINAR_GENERO = 'eliminar_genero';
+  public static $ACTION_ELIMINAR_IMAGEN = 'eliminar_imagen';
   public static $ACTION_IR_A_LOGIN = 'ir_a_login';
   public static $ACTION_LOGIN = 'login';
+  public static $ACTION_BODY = 'body';
   public static $ACTION_LOGOUT = 'logout';
   public static $ACTION_HOME = 'home';
+  public static $ACTION_PRINCIPAL = 'principal';
 }
 
  ?>

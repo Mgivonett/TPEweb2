@@ -44,8 +44,9 @@ class LoginController
         $_SESSION['USER'] = $user;
         $_SESSION['ADMIN'] = $usuario["admin"];
         $this->vista->mostrarMensaje("Usted se logueo correctamente", "success");
-        header("Location: index.php");
-        die();
+        header("Location: principal");
+
+        //die();
       } else {
         $this->vista->mostrarMensaje("No se pudo ingresar, error de Usuario y/o Clave", "danger");
         $this->vista->mostrar(["BAD"]);
@@ -67,7 +68,7 @@ class LoginController
   public function logout(){
     session_start();
     session_destroy();
-    header("Location: ir_a_login");
+    header("Location: principal");
     die();
   }
   

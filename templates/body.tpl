@@ -10,9 +10,11 @@
 </header>
 <div class="site-title">
     <div class="zerogrid">
+        {if !isset($usuario)}
         <div class="row">
             <h2 class="t-center log-in"><a href="#" class="login">LOG IN/CREATE ACCOUNT</a></h2>
         </div>
+        {/if}
         <div class="row">
             {include file='usuarioLogueado.tpl'}
         </div>
@@ -37,7 +39,6 @@
     <div class="wrap-container zerogrid">
         <div class="crumbs">
             <div class="container">
-
                 {include file='principal.tpl'}
             </div>
         </div>
@@ -52,7 +53,7 @@
             Copyright 2016 - <a href="https://youtu.be/mJm8HTcTc4o" target="_blank" rel="nofollow">Rodriguez, Givonetti</a>
             <ul class="quick-link f-right">
 
-                <li><a href="#" class="admin-peliculas">Administrar</a></li>
+                <li><a href="#" class="admin-peliculas">{if $admin}Administrar{/if}</a></li>
 
             </ul>
         </div>

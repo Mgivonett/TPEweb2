@@ -16,10 +16,12 @@ class PeliculasView extends View
     $this->smarty->display('index.tpl');
   }
     
-  function mostrarPrincipal($peliculas,$generos){
+  function mostrarPrincipal($peliculas,$generos,$usuarioLogueado){
     $this->smarty->assign('peliculas',$peliculas);
     $this->smarty->assign('generos',$generos);
-    $this->smarty->display('principal.tpl');
+    $this->smarty->assign('usuario',$usuarioLogueado['email']);
+    $this->smarty->assign('admin',$usuarioLogueado['admin']);
+    $this->smarty->display('body.tpl');
   }
 
   function getLista($peliculas){

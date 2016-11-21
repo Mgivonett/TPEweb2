@@ -109,13 +109,14 @@ class PeliculasModel extends Model{
     $this->eliminarGenerosPeliculaSegunIdPelicula($id_pelicula);
   }
 
-  function desvincularImgAnterior($imagen){
-    unlink($imagen);
+  function eliminarImagen($id_imagen){
+    $sentencia = $this->db->prepare("delete from imagen where id_imagen=?");
+    $sentencia->execute(array($id_imagen));
   }
-
-  function editarPelicula($titulo,$link,$descripcion,$imagen,$id_pelicula){
-    $sentencia = $this->db->prepare("update pelicula set titulo=?,link=?,descripcion=?,imagen=? where id_pelicula=?");
-    $sentencia->execute(array($titulo,$link,$descripcion,$imagen,$id_pelicula));
+  
+  function editarPelicula($titulo,$link,$descripcion,$imagenes,$id_pelicula){
+    $this->crearImagenes($id_pelicula,$imagenes);
+    $this->editarPeliculaSinImagen($titulo,$link,$descripcion,$id_pelicula);
   }
 
   function editarPeliculaSinImagen($titulo,$link,$descripcion,$id_pelicula){
