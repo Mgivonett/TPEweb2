@@ -25,12 +25,13 @@
 
 </head>
 <body>
+<script src="libs/jquery/jquery-3.1.1.min.js"></script>
 <div class="wrap-body">
 	{include file='body.tpl'}
 </div>
 	<!-- js -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.1.3/mustache.js"></script>
-	<script src="libs/jquery/jquery-3.1.1.min.js"></script>
+
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
 	<script src="libs/bootstrap/js/bootstrap.min.js"></script>
 	<script src="js/detallesPelicula.js"></script>

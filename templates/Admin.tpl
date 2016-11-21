@@ -24,6 +24,7 @@
                         <input type="submit" class="btn btn-primary" name="Agregar" id="agregarPeliculaBtn">
                         <!-- esto es AGREGAR PELICULA -->
                         <button class="administrar-generos btn btn-primary">Admin Generos</button>
+
                     </div>
                 </div>
             </div>
