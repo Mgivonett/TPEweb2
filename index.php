@@ -2,13 +2,17 @@
 include('controllers/PeliculasController.php');
 include('controllers/GenerosController.php');
 require ('config/ConfigApp.php');
+require ('controller/UsuariosController.php');
 
 $generosController = new GenerosController();
 $controller = new PeliculasController($generosController);
+$c_usuarios = new UsuariosController();
+
+$controllers = ['Usuarios' =>  $c_usuarios];
 
 if (!array_key_exists(ConfigApp::$ACTION,$_REQUEST)){
   $controller->iniciar();
-  
+
   die();
 }
 
@@ -62,4 +66,3 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
 }
 
 ?>
-

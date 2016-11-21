@@ -71,7 +71,7 @@
 		<div class="wrapper">
 			Copyright 2016 - <a href="https://youtu.be/mJm8HTcTc4o" target="_blank" rel="nofollow">Rodriguez, Givonetti</a>
 			<ul class="quick-link f-right">
-
+				<li><a href="#" class="iniciar iniciar_sesion" aria-hidden="true">iniciar sesion</a></li>
           		<li><a href="#" class="admin-peliculas">Administrar</a></li>
 
 			</ul>

@@ -15,6 +15,11 @@ class ConfigApp{
   public static $ACTION_EDITAR_GENERO = 'editar_genero';
   public static $ACTION_ELIMINAR_GENERO = 'eliminar_genero';
   public static $ACTION_HOME = 'home';
+  public static $ACTIONS = [
+  'login' =>  "Usuarios",
+  'logout' =>  "Usuarios",
+  'registrar' =>  "Usuarios",
+  'admin_usuarios' =>  "Usuarios"];
 }
 
  ?>
