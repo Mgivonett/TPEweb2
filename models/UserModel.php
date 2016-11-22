@@ -7,7 +7,6 @@ class UserModel extends Model
     $sentencia->execute(array($user));
     return $sentencia->fetch(PDO::FETCH_ASSOC);
   }
-
 function GuardarUsuario($user,$pass){
     $sentencia = $this->db->prepare("INSERT INTO usuario(email,password) VALUES(?,?)");
     $sentencia->execute(array($user,$pass));

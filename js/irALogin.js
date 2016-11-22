@@ -1,8 +1,8 @@
 $(document).ready(function(){
-    $('.login').on('click',function(e){
+    $(document).on('click','.login',function(e){
         e.preventDefault();
         $.get( "index.php?action=ir_a_login", function(data) {
-            $('.wrap-body').html(data);
+            $('.container').html(data);
         });
-    });  
+    });
 });

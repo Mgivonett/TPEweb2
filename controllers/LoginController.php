@@ -12,11 +12,11 @@ class LoginController
     $this->modelo = new UserModel();
     $this->vista = new LoginView();
   }
-  
+
   function iniciar($error){
     $this->vista->mostrar($error);
   }
-  
+
   public function usuarioLogueado(){
     session_start();
     if(isset($_SESSION['USER'])) {
@@ -24,7 +24,7 @@ class LoginController
       return $user;
     }
   }
-  
+
   public function validar(){
 
   }
@@ -44,8 +44,9 @@ class LoginController
         $_SESSION['USER'] = $user;
         $_SESSION['ADMIN'] = $usuario["admin"];
         $this->vista->mostrarMensaje("Usted se logueo correctamente", "success");
-        header("Location: index.php");
-        die();
+
+        header("Location: principal");
+
       } else {
         $this->vista->mostrarMensaje("No se pudo ingresar, error de Usuario y/o Clave", "danger");
         $this->vista->mostrar(["BAD"]);
@@ -67,10 +68,11 @@ class LoginController
   public function logout(){
     session_start();
     session_destroy();
-    header("Location: ir_a_login");
+    header("Location: principal");
+
     die();
   }
-  
+
 }
 
  ?>

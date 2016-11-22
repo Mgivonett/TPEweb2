@@ -9,5 +9,10 @@
 <br>
 {foreach from=$pelicula['imagenes'] key=index item=imagen}
     <img src="{$imagen['direccion']}" data-idimagen="{$imagen['id_imagen']}" alt="Responsive image">
+    {if $user['admin']}
+        <a href="#" data-idimagen="{$imagen['id_imagen']}" data-idpelicula="{$pelicula['id_pelicula']}" class="btn btn-primary eliminarImagen"  role="button" >Eliminar</a>
+    {/if}
 {/foreach}
 <input type="hidden" name="id_pelicula" value="{$pelicula['id_pelicula']}"><br>
+
+<script src="js/eliminarImagen.js"></script>

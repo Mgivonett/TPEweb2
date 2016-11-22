@@ -8,6 +8,7 @@ require_once ('config/ConfigApp.php');
 $generosController = new GenerosController();
 $loginController= new LoginController();
 $SingUpController = new SingUp();
+
 $controller = new PeliculasController($generosController,$loginController);
 
 if (!array_key_exists(ConfigApp::$ACTION,$_REQUEST)){
@@ -53,6 +54,9 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
   case ConfigApp::$ACTION_ELIMINAR_GENERO:
     $generosController->eliminarGenero();
     break;
+  case ConfigApp::$ACTION_ELIMINAR_IMAGEN:
+    $controller->eliminarImagen();
+    break;
   case ConfigApp::$ACTION_IR_A_ADMINISTRAR_PELICULAS:
     $controller->irAAdministradorDePeliculas();
     break;
@@ -70,6 +74,9 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
     break;
   case ConfigApp::$ACTION_SINGUP:
     $SingUpController->crearUsuario();
+  case ConfigApp::$ACTION_PRINCIPAL:
+    $controller->mostrarPrincipal();
+    break;
   default:
     $controller->iniciar();
     break;

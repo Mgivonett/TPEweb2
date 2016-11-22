@@ -8,6 +8,7 @@
             <div class="input full">
                 <label class="string optional" for="user-name">Email*</label>
                 <input name="email" class="string optional" maxlength="255" id="user-email-create" placeholder="Email" type="email" size="50" />
+
             </div>
         </div>
         <div class="sminputs">
@@ -18,6 +19,7 @@
             <div class="input string optional">
                 <label class="string optional" for="user-pw-repeat">Repeat password *</label>
                 <input name="password" class="string optional" maxlength="255" id="user-pw-repeat-create" placeholder="Repeat password" type="text" size="50" />
+
             </div>
         </div>
         <div class="simform__actions">
