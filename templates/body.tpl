@@ -1,3 +1,4 @@
+{include file='mensaje.tpl'}
 <!--////////////////////////////////////Header-->
 <header>
     <div class="zerogrid">

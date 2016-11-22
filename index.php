@@ -22,40 +22,62 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
     $controller->getPelicula();
     break;
   case ConfigApp::$ACTION_GUARDAR_PELICULA:
-    $controller->guardar();
+    if($loginController->checkLogin()) {
+      $controller->guardar();
+    }
     break;
   case ConfigApp::$ACTION_ELIMINAR_PELICULA:
-    $controller->eliminar();
+    if($loginController->checkLogin()) {
+      $controller->eliminar();
+    }
     break;
   case ConfigApp::$ACTION_IR_A_EDITAR_PELICULA:
-    $controller->peliculaAEditar();
+    if($loginController->checkLogin()) {
+      $controller->peliculaAEditar();
+    }
     break;
   case ConfigApp::$ACTION_EDITAR_PELICULA:
-    $controller->editar();
+    if($loginController->checkLogin()) {
+      $controller->editar();
+    }
     break;
   case ConfigApp::$ACTION_MOSTRAR_PELICULAS_X_GENERO:
     $controller->mostrarPeliculasXGenero();
     break;
   case ConfigApp::$ACTION_IR_A_ADMINISTRAR_GENEROS:
-    $generosController->irAAdministrarGeneros();
+    if($loginController->checkLogin()) {
+      $generosController->irAAdministrarGeneros();
+    }
     break;
   case ConfigApp::$ACTION_GUARDAR_GENERO:
-    $generosController->guardarGenero();
+    if($loginController->checkLogin()) {
+      $generosController->guardarGenero();
+    }
     break;
   case ConfigApp::$ACTION_IR_A_EDITAR_GENERO:
-    $generosController->generoAEditar();
+    if($loginController->checkLogin()) {
+      $generosController->generoAEditar();
+    }
     break;
   case ConfigApp::$ACTION_EDITAR_GENERO:
-    $generosController->editarGenero();
+    if($loginController->checkLogin()) {
+      $generosController->editarGenero();
+    }
     break;
   case ConfigApp::$ACTION_ELIMINAR_GENERO:
-    $generosController->eliminarGenero();
+    if($loginController->checkLogin()) {
+      $generosController->eliminarGenero();
+    }
     break;
   case ConfigApp::$ACTION_ELIMINAR_IMAGEN:
-    $controller->eliminarImagen();
+    if($loginController->checkLogin()) {
+      $controller->eliminarImagen();
+    }
     break;
   case ConfigApp::$ACTION_IR_A_ADMINISTRAR_PELICULAS:
-    $controller->irAAdministradorDePeliculas();
+    if($loginController->checkLogin()) {
+      $controller->irAAdministradorDePeliculas();
+    }
     break;
   case ConfigApp::$ACTION_HOME:
     $controller->mostrarVistaPeliculas();
@@ -64,7 +86,7 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
     $loginController->iniciar([]);
     break;
   case ConfigApp::$ACTION_LOGIN:
-    $loginController->login();
+    $controller->login();
     break;
   case ConfigApp::$ACTION_LOGOUT:
     $loginController->logout();

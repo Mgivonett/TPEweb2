@@ -99,6 +99,11 @@ class PeliculasController
     $peliculas = $this->modelo->getPeliculas();
     $this->vista->getLista($peliculas);
   }
+
+  function login(){
+    $this->loginController->login();
+    $this->mostrarPrincipal();
+  }
   
   function mostrarPrincipal(){
     $peliculas = $this->modelo->getPeliculas();

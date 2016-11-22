@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#formPelicula').on('submit',(function(e) {
+    $(document).on('submit','#formPelicula',(function(e) {
         e.preventDefault();
         var formData = new FormData(this);
         $.ajax({

@@ -25,13 +25,12 @@
 
 </head>
 <body>
-<script src="libs/jquery/jquery-3.1.1.min.js"></script>
 <div class="wrap-body">
 	{include file='body.tpl'}
 </div>
 	<!-- js -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.1.3/mustache.js"></script>
-
+	<script src="libs/jquery/jquery-3.1.1.min.js"></script>
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
 	<script src="libs/bootstrap/js/bootstrap.min.js"></script>
 	<script src="js/detallesPelicula.js"></script>
@@ -39,9 +38,10 @@
 	<script src="js/administradorDePeliculas.js"></script>
 	<script src="js/volverAInicio.js"></script>
 	<script src="js/irALogin.js"></script>
+	{*<script src="js/login.js"></script>*}
+	<script src="js/logout.js"></script>
 	<!-- js de la API -->
 	<!--<script src="js/mostrarPeliculasAPI.js"></script>-->
-	<script src="js/logout.js"></script>
 
 </body>
 </html>
