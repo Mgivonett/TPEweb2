@@ -2,15 +2,18 @@
 include_once('controllers/PeliculasController.php');
 include_once('controllers/GenerosController.php');
 include_once('controllers/LoginController.php');
+include_once('controllers/SingUpController.php');
 require_once ('config/ConfigApp.php');
 
 $generosController = new GenerosController();
 $loginController= new LoginController();
+$SingUpController = new SingUp();
+
 $controller = new PeliculasController($generosController,$loginController);
 
 if (!array_key_exists(ConfigApp::$ACTION,$_REQUEST)){
   $controller->iniciar();
-  
+
   die();
 }
 
@@ -22,75 +25,58 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
     $controller->getPelicula();
     break;
   case ConfigApp::$ACTION_GUARDAR_PELICULA:
-    if($loginController->checkLogin()) {
-      $controller->guardar();
-    }
+    $controller->guardar();
     break;
   case ConfigApp::$ACTION_ELIMINAR_PELICULA:
-    if($loginController->checkLogin()) {
-      $controller->eliminar();
-    }
+    $controller->eliminar();
     break;
   case ConfigApp::$ACTION_IR_A_EDITAR_PELICULA:
-    if($loginController->checkLogin()) {
-      $controller->peliculaAEditar();
-    }
+    $controller->peliculaAEditar();
     break;
   case ConfigApp::$ACTION_EDITAR_PELICULA:
-    if($loginController->checkLogin()) {
-      $controller->editar();
-    }
+    $controller->editar();
     break;
   case ConfigApp::$ACTION_MOSTRAR_PELICULAS_X_GENERO:
     $controller->mostrarPeliculasXGenero();
     break;
   case ConfigApp::$ACTION_IR_A_ADMINISTRAR_GENEROS:
-    if($loginController->checkLogin()) {
-      $generosController->irAAdministrarGeneros();
-    }
+    $generosController->irAAdministrarGeneros();
     break;
   case ConfigApp::$ACTION_GUARDAR_GENERO:
-    if($loginController->checkLogin()) {
-      $generosController->guardarGenero();
-    }
+    $generosController->guardarGenero();
     break;
   case ConfigApp::$ACTION_IR_A_EDITAR_GENERO:
-    if($loginController->checkLogin()) {
-      $generosController->generoAEditar();
-    }
+    $generosController->generoAEditar();
     break;
   case ConfigApp::$ACTION_EDITAR_GENERO:
-    if($loginController->checkLogin()) {
-      $generosController->editarGenero();
-    }
+    $generosController->editarGenero();
     break;
   case ConfigApp::$ACTION_ELIMINAR_GENERO:
-    if($loginController->checkLogin()) {
-      $generosController->eliminarGenero();
-    }
+    $generosController->eliminarGenero();
     break;
   case ConfigApp::$ACTION_ELIMINAR_IMAGEN:
-    if($loginController->checkLogin()) {
-      $controller->eliminarImagen();
-    }
+    $controller->eliminarImagen();
     break;
   case ConfigApp::$ACTION_IR_A_ADMINISTRAR_PELICULAS:
-    if($loginController->checkLogin()) {
-      $controller->irAAdministradorDePeliculas();
-    }
+    $controller->irAAdministradorDePeliculas();
     break;
   case ConfigApp::$ACTION_HOME:
     $controller->mostrarVistaPeliculas();
+    break;
+  case ConfigApp::$ACTION_IR_ADMINS_CONFIG:
+    $loginController->IrAdminsConfig();
     break;
   case ConfigApp::$ACTION_IR_A_LOGIN:
     $loginController->iniciar([]);
     break;
   case ConfigApp::$ACTION_LOGIN:
-    $controller->login();
+    $loginController->login();
     break;
   case ConfigApp::$ACTION_LOGOUT:
     $loginController->logout();
     break;
+  case ConfigApp::$ACTION_SINGUP:
+    $SingUpController->crearUsuario();
   case ConfigApp::$ACTION_PRINCIPAL:
     $controller->mostrarPrincipal();
     break;
@@ -100,4 +86,3 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
 }
 
 ?>
-

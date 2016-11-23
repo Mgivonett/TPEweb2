@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2016 a las 16:01:32
+-- Tiempo de generación: 14-11-2016 a las 23:36:42
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.8
 
@@ -23,24 +23,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `comentario`
---
-
-CREATE TABLE `comentario` (
-  `id_comentario` int(11) NOT NULL,
-  `comentario` varchar(250) NOT NULL,
-  `fk_id_usuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONES PARA LA TABLA `comentario`:
---   `fk_id_usuario`
---       `usuario` -> `id_usuario`
---
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `genero`
 --
 
@@ -48,10 +30,6 @@ CREATE TABLE `genero` (
   `id_genero` int(11) NOT NULL,
   `titulo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONES PARA LA TABLA `genero`:
---
 
 --
 -- Volcado de datos para la tabla `genero`
@@ -81,14 +59,6 @@ CREATE TABLE `genero_pelicula` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELACIONES PARA LA TABLA `genero_pelicula`:
---   `fk_id_genero`
---       `genero` -> `id_genero`
---   `fk_id_pelicula`
---       `pelicula` -> `id_pelicula`
---
-
---
 -- Volcado de datos para la tabla `genero_pelicula`
 --
 
@@ -111,17 +81,12 @@ CREATE TABLE `imagen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELACIONES PARA LA TABLA `imagen`:
---   `fk_id_pelicula`
---       `pelicula` -> `id_pelicula`
---
-
---
 -- Volcado de datos para la tabla `imagen`
 --
 
 INSERT INTO `imagen` (`id_imagen`, `direccion`, `fk_id_pelicula`) VALUES
-(9, 'images/5832336bc1e48_Doctor_Strange.jpg', 4);
+(5, 'images/58290dc3b0c10_Doctor_Strange.jpg', 4),
+(6, 'images/58290dc3be631_imagenes-amor-perritos-tiernos-te-amo-3.jpg', 4);
 
 -- --------------------------------------------------------
 
@@ -135,10 +100,6 @@ CREATE TABLE `pelicula` (
   `link` varchar(300) NOT NULL,
   `descripcion` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONES PARA LA TABLA `pelicula`:
---
 
 --
 -- Volcado de datos para la tabla `pelicula`
@@ -156,31 +117,20 @@ INSERT INTO `pelicula` (`id_pelicula`, `titulo`, `link`, `descripcion`) VALUES
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(110) NOT NULL,
+  `password` int(11) NOT NULL,
   `admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONES PARA LA TABLA `usuario`:
---
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `email`, `password`, `admin`) VALUES
-(1, 'juanm@gmail.com', 'c33367701511b4f6020ec61ded352059', 1),
-(2, 'mg@gmail.com', 'c33367701511b4f6020ec61ded352059', 0);
+(1, 'juanm@gmail.com', 654321, 1);
 
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `comentario`
---
-ALTER TABLE `comentario`
-  ADD PRIMARY KEY (`id_comentario`);
 
 --
 -- Indices de la tabla `genero`
@@ -217,11 +167,6 @@ ALTER TABLE `usuario`
 --
 
 --
--- AUTO_INCREMENT de la tabla `comentario`
---
-ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
@@ -235,7 +180,7 @@ ALTER TABLE `genero_pelicula`
 -- AUTO_INCREMENT de la tabla `imagen`
 --
 ALTER TABLE `imagen`
-  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `pelicula`
 --
@@ -245,7 +190,7 @@ ALTER TABLE `pelicula`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

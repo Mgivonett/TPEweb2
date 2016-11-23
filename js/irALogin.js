@@ -4,5 +4,5 @@ $(document).ready(function(){
         $.get( "index.php?action=ir_a_login", function(data) {
             $('.container').html(data);
         });
-    });  
+    });
 });

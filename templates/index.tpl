@@ -38,10 +38,9 @@
 	<script src="js/administradorDePeliculas.js"></script>
 	<script src="js/volverAInicio.js"></script>
 	<script src="js/irALogin.js"></script>
-	{*<script src="js/login.js"></script>*}
 	<script src="js/logout.js"></script>
+
 	<!-- js de la API -->
 	<!--<script src="js/mostrarPeliculasAPI.js"></script>-->
-
 </body>
 </html>

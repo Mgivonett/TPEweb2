@@ -21,6 +21,8 @@ class ConfigApp{
   public static $ACTION_LOGOUT = 'logout';
   public static $ACTION_HOME = 'home';
   public static $ACTION_PRINCIPAL = 'principal';
+  public static $ACTION_SINGUP = 'SingUp';
+  public static $ACTION_IR_ADMINS_CONFIG = 'Ir_Admins_Config';
 }
 
  ?>

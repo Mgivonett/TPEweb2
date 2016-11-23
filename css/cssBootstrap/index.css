@@ -32,3 +32,13 @@ text-align: center;
   left: 40%;
   position:relative;;
 }
+
+.table-bordered
+{
+  background-color: grey;
+  color: #000000;
+}
+.titulopelicula
+{
+  background-color: grey;
+}

@@ -1,5 +1,4 @@
 <h1>{$pelicula['titulo']}</h1>
-
 <div><p>Link: <a href="{$pelicula['link']}">{$pelicula['link']}</a></p></div>
 <div><p>Descripcion: {$pelicula['descripcion']}</p></div>
 <div class="btn-group" role="group" aria-label="...">

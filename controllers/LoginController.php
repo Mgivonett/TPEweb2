@@ -6,19 +6,17 @@ class LoginController
 {
   private $vista;
   private $modelo;
-  private $resultado;
 
   function __construct()
   {
     $this->modelo = new UserModel();
     $this->vista = new LoginView();
-    $this->resultado=[];
   }
-  
+
   function iniciar($error){
     $this->vista->mostrar($error);
   }
-  
+
   public function usuarioLogueado(){
     session_start();
     if(isset($_SESSION['USER'])) {
@@ -26,7 +24,7 @@ class LoginController
       return $user;
     }
   }
-  
+
   public function validar(){
 
   }
@@ -46,8 +44,12 @@ class LoginController
         $_SESSION['USER'] = $user;
         $_SESSION['ADMIN'] = $usuario["admin"];
         $this->vista->mostrarMensaje("Usted se logueo correctamente", "success");
+
+        header("Location: principal");
+
       } else {
         $this->vista->mostrarMensaje("No se pudo ingresar, error de Usuario y/o Clave", "danger");
+        $this->vista->mostrar(["BAD"]);
       }
     }
   }
@@ -55,14 +57,11 @@ class LoginController
   public function checkLogin(){
     session_start();
     if(!isset($_SESSION['USER'])){
-      header("Location: index.php");
+      header("Location: ir_a_login");
       die();
     }
     else{
-      if($_SESSION['ADMIN']){
-        return true;
-      }
-      else{ return false;}
+      return true;
     }
   }
 
@@ -70,8 +69,28 @@ class LoginController
     session_start();
     session_destroy();
     header("Location: principal");
+
     die();
   }
+  function IrAdminsConfig(){
+      $usuarios = $this->modelo->getUsers();
+      $this->vista->IrAdminsConfig($usuarios);
+    }
+
+    function editarUsuario(){
+        if($this->checkAdmin() == 1){
+          $user = $_POST["email"];
+          $this->modelo->editarUsuario($user);
+        }
+      }
+      function checkAdmin(){
+        if(!isset($_SESSION["admin"])){
+          $priv=0;
+        }else{
+          $priv = $_SESSION["admin"];
+        }
+        return $priv;
+      }
 
 }
 
