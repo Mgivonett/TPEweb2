@@ -1,6 +1,6 @@
 <?php
 
-require('libs/Smarty.class.php');
+require(dirname(__DIR__).'/libs/Smarty.class.php');
 
 class View{
 	

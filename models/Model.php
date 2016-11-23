@@ -1,5 +1,5 @@
 <?php
-include_once 'db/config.php';
+include_once (dirname(__DIR__).'/db/config.php');
 abstract class Model{
   protected $db;
   function __construct() {

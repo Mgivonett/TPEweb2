@@ -1,12 +1,12 @@
 <?php
 
-include('models/PeliculasModel.php');
+include_once('models/PeliculasModel.php');
 include_once('views/PeliculasView.php');
 include_once('views/PeliculasFiltradasXGeneroView.php');
 require_once('views/DetallesPeliculaView.php');
 require_once('views/AdministradorPeliculaView.php');
 require_once('controllers/GenerosController.php');
-require_once('controllers/LoginController.php');
+require_once('controllers/UserController.php');
 
 class PeliculasController
 {

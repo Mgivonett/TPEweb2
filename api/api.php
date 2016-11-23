@@ -7,7 +7,7 @@ abstract class Api{
   function __construct($request){
     header("Content-Type: application/json");
     $this->args = explode('/', $request);
-    //array_shift remueve el primer elemento ("pelicula") y lo retorna (con eso elige que metodo llamar)
+    //array_shift remueve el primer elemento ("comentarios") y lo retorna (con eso elige que metodo llamar)
     $this->endpoint = array_shift($this->args);
     $this->method = $_SERVER['REQUEST_METHOD'];
   }

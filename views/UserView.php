@@ -1,6 +1,6 @@
 <?php
 require_once ('View.php');
-class LoginView extends View
+class UserView extends View
 {
   function agregarError($error){
     $this->smarty->assign('error',$error);

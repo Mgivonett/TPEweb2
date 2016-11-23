@@ -1,0 +1,24 @@
+{{#paquete}}
+    <div class="row comentario">
+       <div class="col-sm-6 col-md-4 col-sm-offset-4 col-md-offset-4">
+           <div class="thumbnail">
+               <div class="caption">
+                   <div class="usuario">
+                       <h3>{{usuario}}</h3>
+                   </div>
+                   <div class="descripcion">
+                       <p>{{comentario}}</p>
+                   </div>
+                   <div class="puntuacion">
+                       <p>Puntuacion: {{puntuacion}}</p>
+                   </div>
+                   <div>
+                    {{#admin}}
+                       <a href="#" data-idcomentario="{{id_comentario}}" class="btn btn-primary eliminarComentario"  role="button" >Eliminar</a>
+                    {{/admin}}
+                   </div>
+               </div>
+           </div>
+       </div>
+    </div>
+{{/paquete}}

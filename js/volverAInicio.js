@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $(".inicio-Btn").on('click',function(e){
+    $(document).on('click','.inicio-Btn',function(e){
         e.preventDefault();
         $.get( "index.php?action=home", function(data) {
             $('.container').html(data);
