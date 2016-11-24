@@ -9,4 +9,7 @@
         {/if}
     {/foreach}
     <input data-idusuario="{$usuario['id_usuario']}"  type="submit" class="btn btn-default" name="Agregar" id="agregarAdministrador">
+    {foreach from=$admins item=admin}
+        {$admin}...
+    {/foreach}
 </form>

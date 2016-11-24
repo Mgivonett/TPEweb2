@@ -12,7 +12,10 @@
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
                     {foreach from=$pelicula['imagenes'] key=index item=imagen}
-                    <img src="{$imagen['direccion']}" data-idimagen="{$imagen['id_imagen']}" alt="Responsive image">
+                        <img src="{$imagen['direccion']}" data-idimagen="{$imagen['id_imagen']}" class="img-responsive img-thumbnail" alt="Responsive image">
+                        {if $user['admin']}
+                            <a href="#" data-idimagen="{$imagen['id_imagen']}" data-idpelicula="{$pelicula['id_pelicula']}" class="btn btn-primary eliminarImagen"  role="button" >Eliminar</a>
+                        {/if}
                     {/foreach}
                     <input type="file" name="imagenes[]" multiple>
                     <input type="hidden" name="id_pelicula" value="{$pelicula['id_pelicula']}"><br>

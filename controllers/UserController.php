@@ -26,10 +26,6 @@ class UserController
       return $user;
     }
   }
-  
-  public function validar(){
-
-  }
 
   public function login(){
     if(!isset($_POST['user-email'])) {
@@ -46,7 +42,7 @@ class UserController
           session_start();
           $_SESSION['USER'] = $user;
           $_SESSION['ADMIN'] = $usuario["admin"];
-          $this->vista->mostrarMensaje("Usted se logueo correctamente", "success");
+          //$this->vista->mostrarMensaje("Usted se logueo correctamente", "success");
         } else {
           $this->vista->mostrarMensaje("No se pudo ingresar, error de Usuario y/o Clave", "danger");
         }
@@ -58,7 +54,7 @@ class UserController
   {
     session_start();
     if(!isset($_SESSION['USER']) && !empty($_SESSION['USER'])){
-      return "visitante";
+      return VISITANTE;
     }
 
     if($_SESSION['ADMIN']){
@@ -72,7 +68,7 @@ class UserController
     
   }
 
-  public function checkLogin(){
+/*  public function checkLogin(){//ahora uso getLvlAuth...ver si saco este metodo
     session_start();
     if(!isset($_SESSION['USER'])){
       header("Location: index.php");
@@ -87,13 +83,11 @@ class UserController
         $this->lvlAuth=USER;
         return $this->lvlAuth;}
     }
-  }
+  }*/
 
   public function logout(){
     session_start();
     session_destroy();
-    header("Location: principal");
-    die();
   }
 
   function IrAdminsConfig(){
@@ -124,22 +118,29 @@ class UserController
     }
   }
 
+  function existeUsuario($user){
+    $userDB=$this->modelo->getUser($user);
+    if(!empty($userDB))return true;
+    return false;
+  }
   function createUsuario(){
-    if(isset($_POST['email'])&&isset($_POST['password']) &&($_POST['password']==$_POST['password2'])){
+    if(isset($_POST['email'])&&isset($_POST['password']) &&($_POST['password']==$_POST['password2']) &&
+      !empty($_POST['password']) && !empty($_POST['password2'])){
       $user = $_POST['email'];
       $pass = $_POST['password'];
       $pass = md5($pass);
-      $this->modelo->GuardarUsuario($user,$pass);
-      $this->vista->mostrarMensaje("El usuario se creo correctamente!","success");
+      if(!$this->existeUsuario($user)) {
+        $this->modelo->GuardarUsuario($user, $pass);
+        $this->vista->mostrarMensaje("El usuario se creo correctamente!", "success");
+      }
+      else{
+        $this->vista->mostrarMensaje("El usuario ya existe!","danger");
+      }
     }
     else if(isset($_POST['email'])&&isset($_POST['password']) &&($_POST['password']!=$_POST['password2'])){
       $this->vista->mostrarMensaje("Las contraseñas no son iguales!","danger");
     }
-    else{
-      $this->vista->mostrarMensaje("El usuario ya existe!","danger");
-    }
   }
-  
 }
 
  ?>

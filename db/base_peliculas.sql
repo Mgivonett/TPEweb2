@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2016 a las 23:44:04
+-- Tiempo de generación: 24-11-2016 a las 19:50:05
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.8
 
@@ -40,7 +40,8 @@ CREATE TABLE `comentario` (
 
 INSERT INTO `comentario` (`id_comentario`, `comentario`, `puntuacion`, `fk_id_usuario`, `fk_id_pelicula`) VALUES
 (1, 'Excelente pelicula', 5, 1, 4),
-(2, 'Apesta, yo queria dibujos animados', 1, 2, 4);
+(2, 'Apesta, yo queria dibujos animados', 1, 2, 4),
+(3, 'john was here', 3, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -113,7 +114,6 @@ INSERT INTO `imagen` (`id_imagen`, `direccion`, `fk_id_pelicula`) VALUES
 (15, 'images/58361a06663e0_batman-vs-superman.jpg', 6),
 (16, 'images/58361a0680bea_batman-v-superman-nos-alucina-con-su-nuevo-trailer_k8dq.640.jpg', 6);
 
-
 -- --------------------------------------------------------
 
 --
@@ -144,7 +144,7 @@ INSERT INTO `pelicula` (`id_pelicula`, `titulo`, `link`, `descripcion`) VALUES
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` int(11) NOT NULL,
+  `password` varchar(110) NOT NULL,
   `admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -153,11 +153,23 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `email`, `password`, `admin`) VALUES
-(1, 'juanm@gmail.com', 654321, 1);
+(1, 'juanm@gmail.com', 'c33367701511b4f6020ec61ded352059', 1),
+(2, 'mg@gmail.com', 'c33367701511b4f6020ec61ded352059', 1),
+(3, 'carlitos@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0),
+(4, 'emanuel@gmail.com', '98dae0e08c01f9e64dc3f9650eb5a714', 0),
+(9, 'car@concalor.com', '81dc9bdb52d04dc20036dbd8313ed055', 1),
+(10, 'abc@abc.com', '202cb962ac59075b964b07152d234b70', 0),
+(11, 'sarasendo@hotmail.com', '202cb962ac59075b964b07152d234b70', 0);
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD PRIMARY KEY (`id_comentario`);
 
 --
 -- Indices de la tabla `genero`
@@ -197,7 +209,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `genero`
 --
@@ -222,7 +234,7 @@ ALTER TABLE `pelicula`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -22,7 +22,12 @@ class UserModel extends Model
   function getAdministradores(){
     $sentencia = $this->db->prepare('SELECT email FROM  usuario WHERE admin=1');
     $sentencia->execute(array());
-    return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $arrAdmins= $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $arrAdminsEmail=[];
+    foreach ($arrAdmins as $admin){
+      $arrAdminsEmail[]=$admin['email'];
+    }
+    return $arrAdminsEmail;
   }
 
   function editarUsuario($user){

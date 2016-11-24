@@ -27,7 +27,7 @@ input, textarea, select {margin:0; padding:0px;}
 
 html { -webkit-text-size-adjust: none;}
 .video embed,.video object,.video iframe { width: 100%;  height: auto;}
-img{max-width:100%;	height: auto;width: auto\9; /* ie8 */}
+img{max-width:280px;height: auto;width: auto\9; /* ie8 */}
 
 a{
 	color: #654e2d;

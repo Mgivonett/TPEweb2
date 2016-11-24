@@ -34,21 +34,10 @@ class PeliculasController
     $usuarioLogueado=$this->userController->usuarioLogueado();
     $this->vista->mostrar($peliculas,$generos,$usuarioLogueado);
   }
-
-  /*function login(){
-    $this->userController->login();
-    $this->mostrarPrincipal();
+  
+  function getVista(){
+    return $this->vista;
   }
-
-  function crearUsuario(){
-    $this->userController->createUsuario();
-    $this->mostrarPrincipal();
-  }
-
-  function administrarUsuarios(){
-    $this->userController->aadministrarUsuarios();
-    $this->mostrarPrincipal();*/
- // }
 
   function mostrarPrincipal(){
     $peliculas = $this->modelo->getPeliculas();
@@ -108,7 +97,8 @@ class PeliculasController
     $key = $_GET['id_pelicula'];
     $pelicula=$this->modelo->getPeliculaXId($key);
     $generos = $this->generosController->getModelo()->getGeneros();//$this->modelo->getGeneros();
-    $this->vistaAdministradorPelicula->mostrarPelicula($pelicula,$generos);
+    $usuarioLogueado=$this->userController->usuarioLogueado();
+    $this->vistaAdministradorPelicula->mostrarPelicula($pelicula,$generos,$usuarioLogueado);
   }
 
   function mostrarVistaAdmnistradorPeliculas(){//despues de editar se carga el tpl adminlista para mostrar las peliculas
@@ -147,7 +137,6 @@ class PeliculasController
       if(!empty($_FILES['imagenes'])){  //si se agrego una imagen al formulalrio para cambiar la actual
         $imagenesVerificadas = $this->getImagenesVerificadas($_FILES['imagenes']);
         if((count($imagenesVerificadas)>0) && (count($generos)>0)){
-          //$imagen=$this->modelo->imagenUpload($imagenesVerificadas);
           $this->updateGenerosPelicula($generos,$id_pelicula);
           $this->modelo->editarPelicula($titulo,$link,$descripcion,$imagenesVerificadas,$id_pelicula);
           $this->mostrarVistaAdmnistradorPeliculas();

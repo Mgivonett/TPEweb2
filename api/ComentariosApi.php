@@ -25,7 +25,7 @@ class ComentariosApi extends Api
     switch ($this->method) {
       case 'GET':
         return $this->model->getComentariosDePelicula($argumentos[0],$this->userController->getLvlAuth()); //$argumentos[0] es el id de la peliculas de la cual traigo los comentarios
-        break;
+        break;                                                                                             //$this->usercontroller->getLvlAuth() esta para habilitar el form de comentarios si esta logueado
       case 'DELETE':
         if($this->userController->getLvlAuth()==ADMIN && count($argumentos)>0){
           $error['Error'] = "el comentario no existe";
@@ -35,7 +35,7 @@ class ComentariosApi extends Api
         }
         break;
       case 'POST':
-        if(in_array($this->userController->checkLogin(),$this->arrAuth) && count($argumentos) == 0
+        if(in_array($this->userController->getLvlAuth(),$this->arrAuth) && count($argumentos) == 0
           && isset($_POST['id_pelicula']) && isset($_POST['id_usuario']) && isset($_POST['comentario']) && isset($_POST['puntuacion'])
           && !empty($_POST['id_pelicula']) && !empty($_POST['id_usuario']) && !empty($_POST['comentario']) && !empty($_POST['puntuacion'])){
           $error['Error'] = "El comentario no se creo";

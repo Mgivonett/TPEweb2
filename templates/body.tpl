@@ -1,5 +1,5 @@
 <!--////////////////////////////////////Header-->
-<header>
+<header xmlns="http://www.w3.org/1999/html">
     <div class="zerogrid">
         <center>
             <div class="logo t-center">
@@ -17,7 +17,7 @@
         </div>
         {/if}
         <div class="row">
-            {include file='usuarioLogueado.tpl'}
+            <p class="text-right">{include file='usuarioLogueado.tpl'}</p>
         </div>
     </div>
 </div>

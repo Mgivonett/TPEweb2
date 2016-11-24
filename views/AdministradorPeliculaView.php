@@ -19,9 +19,10 @@ class AdministradorPeliculaView extends View
     $this->smarty->display('adminlista.tpl');
   }
 
-  function mostrarPelicula($pelicula,$generos){//muestra una pelicula, traida por id, al template editarPelicula para editarla
+  function mostrarPelicula($pelicula,$generos,$admin){//muestra una pelicula, traida por id, al template editarPelicula para editarla
     $this->smarty->assign('pelicula',$pelicula);
     $this->smarty->assign('generos',$generos);
+    $this->smarty->assign('user',$admin);
     $this->smarty->display('editarPelicula.tpl');
   }
 }

@@ -1,31 +1,34 @@
 
 <div class="modo-login">
 
-  <h2 >Login</h2>
-  <div class="wrapper">
-
-    <div >
-      <span >Enter your email and password <strong>to sign in</strong></span>
-    </div>
+  <h2 class="text-center">Login</h2>
+  <div class="row">
+      <p class="text-center">Ingrese su email y password <strong>para ingresar</strong></p>
+  </div>
+  <div class="row">
     <div class="formulario-de-login">
-      <form accept-charset="utf-8" action="index.php?action=login" class="login-form">
-        <label for="user-name">Email*</label>
-        <input  maxlength="255" id="user-email" name="user-email" placeholder="Email" type="email" size="50" />
-        <br>
-
-        <label for="user-pw">Password *</label>
-        <input maxlength="255" id="user-pw" name="user-pw" placeholder="Password" type="password" size="50" />
-        <span class="hide-password">Show</span>
-        <br>
-        <div class="simform__actions">
-          <button type="submit" >Log In</button>
-          <span><a class="special" role="link" href="#">Forgot your password?<br>Click here</a></span>
+      <form action="index.php?action=login" class="form-horizontal login-form">
+        <div class="form-group">
+          <label for="InputEmail1" class="col-sm-2 control-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" name="user-email" id="InputEmail1" placeholder="Email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="InputPassword1" class="col-sm-2 control-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" name="user-pw" class="form-control" id="InputPassword1" placeholder="Password">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Login</button>
+          </div>
         </div>
       </form>
     </div>
   </div>
-</div>
 
-<div class="">
+<div>
     {include file='createAcount.tpl'}
 </div>
