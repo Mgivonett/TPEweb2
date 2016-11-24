@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $(".SingUp").submit(function(){
+    $(document).on("submit",".SignUp",function(){
         event.preventDefault();
         var formData = new FormData(this);
         $.ajax({

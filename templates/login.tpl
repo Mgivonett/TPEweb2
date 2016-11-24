@@ -25,8 +25,7 @@
     </div>
   </div>
 </div>
+
 <div class="">
-    {include file='createAcoount.tpl'}
+    {include file='createAcount.tpl'}
 </div>
-<script src="js/SingUp.js"></script>
-<script src="js/login.js"></script>

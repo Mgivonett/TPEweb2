@@ -2,11 +2,12 @@
 include_once ('Model.php');
 class UserModel extends Model
 {
+
   function GuardarUsuario($user,$pass){
     $sentencia = $this->db->prepare("INSERT INTO usuario(email,password) VALUES(?,?)");
     $sentencia->execute(array($user,$pass));
   }
-
+    
   function getUser($user){
     $sentencia = $this->db->prepare( "select * from usuario where email = ?");
     $sentencia->execute(array($user));
@@ -18,12 +19,18 @@ class UserModel extends Model
     $sentencia->execute(array());
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
+  function getAdministradores(){
+    $sentencia = $this->db->prepare('SELECT email FROM  usuario WHERE admin=1');
+    $sentencia->execute(array());
+    return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+  }
 
   function editarUsuario($user){
     $usuario = $this->getUser($user);
     $sentencia = $this->db->prepare("UPDATE usuario SET admin=? WHERE email=?");
     $sentencia->execute(array(!$usuario["admin"],$user));
   }
+  
 
 }
 ?>

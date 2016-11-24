@@ -3,7 +3,7 @@
     <span class="logmod__heading-subtitle">Enter your personal details <strong>to create an acount</strong></span>
 </div>
 <div class="logmod__form">
-    <form accept-charset="utf-8" action="index.php?action=SingUp" class="simform SingUp">
+    <form accept-charset="utf-8" action="index.php?action=SignUp" class="simform SignUp">
         <div class="sminputs">
             <div class="input full">
                 <label class="string optional" for="user-name">Email*</label>
@@ -14,11 +14,11 @@
         <div class="sminputs">
             <div class="input string optional">
                 <label class="string optional" for="user-pw">Password *</label>
-                <input class="string optional" maxlength="255" id="user-pw-create" placeholder="Password" type="text" size="50" />
+                <input name="password" class="string optional" maxlength="255" id="user-pw-create" placeholder="Password" type="text" size="50" />
             </div>
             <div class="input string optional">
                 <label class="string optional" for="user-pw-repeat">Repeat password *</label>
-                <input name="password" class="string optional" maxlength="255" id="user-pw-repeat-create" placeholder="Repeat password" type="text" size="50" />
+                <input name="password2" class="string optional" maxlength="255" id="user-pw-repeat-create" placeholder="Repeat password" type="text" size="50" />
 
             </div>
         </div>

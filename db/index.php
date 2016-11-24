@@ -2,7 +2,7 @@
 
 define("SQLFILE", "base_peliculas.sql");
 
-include '../libs/Smarty.class.php';
+include_once '../libs/Smarty.class.php';
 $smarty = new Smarty();
 
 if(isset($_POST["host"]) && isset($_POST["user"]) && isset($_POST["db-pw"]) && isset($_POST["dbname"])){

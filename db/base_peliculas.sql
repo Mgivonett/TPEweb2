@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2016 a las 23:36:42
+-- Tiempo de generación: 23-11-2016 a las 23:44:04
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.8
 
@@ -19,6 +19,28 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `base_peliculas`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentario`
+--
+
+CREATE TABLE `comentario` (
+  `id_comentario` int(11) NOT NULL,
+  `comentario` varchar(250) NOT NULL,
+  `puntuacion` int(1) NOT NULL,
+  `fk_id_usuario` int(11) NOT NULL,
+  `fk_id_pelicula` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`id_comentario`, `comentario`, `puntuacion`, `fk_id_usuario`, `fk_id_pelicula`) VALUES
+(1, 'Excelente pelicula', 5, 1, 4),
+(2, 'Apesta, yo queria dibujos animados', 1, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -43,8 +65,7 @@ INSERT INTO `genero` (`id_genero`, `titulo`) VALUES
 (26, 'accion'),
 (27, 'terror'),
 (28, 'suspenso'),
-(29, 'ciencia-ficcion'),
-(31, 'lol');
+(29, 'ciencia-ficcion');
 
 -- --------------------------------------------------------
 
@@ -66,7 +87,9 @@ INSERT INTO `genero_pelicula` (`fk_id_pelicula`, `fk_id_genero`, `id_genero_peli
 (4, 25, 16),
 (4, 28, 17),
 (4, 29, 18),
-(4, 31, 19);
+(6, 26, 22),
+(6, 28, 23),
+(6, 29, 24);
 
 -- --------------------------------------------------------
 
@@ -85,8 +108,11 @@ CREATE TABLE `imagen` (
 --
 
 INSERT INTO `imagen` (`id_imagen`, `direccion`, `fk_id_pelicula`) VALUES
-(5, 'images/58290dc3b0c10_Doctor_Strange.jpg', 4),
-(6, 'images/58290dc3be631_imagenes-amor-perritos-tiernos-te-amo-3.jpg', 4);
+(10, 'images/58343ef22d7e4_Doctor_Strange.jpg', 4),
+(14, 'images/58361963d33d0_BvsS.jpg', 6),
+(15, 'images/58361a06663e0_batman-vs-superman.jpg', 6),
+(16, 'images/58361a0680bea_batman-v-superman-nos-alucina-con-su-nuevo-trailer_k8dq.640.jpg', 6);
+
 
 -- --------------------------------------------------------
 
@@ -106,7 +132,8 @@ CREATE TABLE `pelicula` (
 --
 
 INSERT INTO `pelicula` (`id_pelicula`, `titulo`, `link`, `descripcion`) VALUES
-(4, 'dr strange', 'https://www.youtube.com/watch?v=fuGRN3dYHKg', 'dr strange movie');
+(4, 'dr strange', 'https://www.youtube.com/watch?v=dOhfaLMbvxA', 'dr strange movie'),
+(6, 'Batman vs Superman: Dawn of Justice', 'https://www.youtube.com/watch?v=0WWzgGyAH6Y', 'Pelea epica entre batman y superman hasta que aparece la mujer maravilla y se roba la peli. Batman es un científico');
 
 -- --------------------------------------------------------
 
@@ -167,25 +194,30 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT de la tabla `genero_pelicula`
 --
 ALTER TABLE `genero_pelicula`
-  MODIFY `id_genero_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_genero_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT de la tabla `imagen`
 --
 ALTER TABLE `imagen`
-  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT de la tabla `pelicula`
 --
 ALTER TABLE `pelicula`
-  MODIFY `id_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --

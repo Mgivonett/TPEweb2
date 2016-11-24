@@ -1,12 +1,12 @@
 <?php
 
-include('models/PeliculasModel.php');
+include_once('models/PeliculasModel.php');
 include_once('views/PeliculasView.php');
 include_once('views/PeliculasFiltradasXGeneroView.php');
 require_once('views/DetallesPeliculaView.php');
 require_once('views/AdministradorPeliculaView.php');
 require_once('controllers/GenerosController.php');
-require_once('controllers/LoginController.php');
+require_once('controllers/UserController.php');
 
 class PeliculasController
 {
@@ -15,15 +15,15 @@ class PeliculasController
   private $modelo;
   private $generosController;
   private $vista;
-  private $loginController;
+  private $userController;
   
-  function __construct($generoController,$loginController)
+  function __construct($generoController,$userController)
   {
     $this->vistaPeliculasXgenero = new PeliculasFiltradasXGeneroView();
     $this->vistaDetallesPelicula = new DetallesPeliculaView();
     $this->vistaAdministradorPelicula = new AdministradorPeliculaView();
     $this->generosController=$generoController;
-    $this->loginController=$loginController;
+    $this->userController=$userController;
     $this->vista=new PeliculasView();
     $this->modelo=new PeliculasModel();
   }
@@ -31,8 +31,30 @@ class PeliculasController
   function iniciar(){
     $peliculas = $this->modelo->getPeliculas();
     $generos= $this->generosController->getModelo()->getGeneros();
-    $usuarioLogueado=$this->loginController->usuarioLogueado();
+    $usuarioLogueado=$this->userController->usuarioLogueado();
     $this->vista->mostrar($peliculas,$generos,$usuarioLogueado);
+  }
+
+  /*function login(){
+    $this->userController->login();
+    $this->mostrarPrincipal();
+  }
+
+  function crearUsuario(){
+    $this->userController->createUsuario();
+    $this->mostrarPrincipal();
+  }
+
+  function administrarUsuarios(){
+    $this->userController->aadministrarUsuarios();
+    $this->mostrarPrincipal();*/
+ // }
+
+  function mostrarPrincipal(){
+    $peliculas = $this->modelo->getPeliculas();
+    $generos = $this->generosController->getModelo()->getGeneros();
+    $usuarioLogueado=$this->userController->usuarioLogueado();
+    $this->vista->mostrarPrincipal($peliculas,$generos,$usuarioLogueado);
   }
   
   function actualizarLista(){
@@ -100,13 +122,6 @@ class PeliculasController
     $this->vista->getLista($peliculas);
   }
   
-  function mostrarPrincipal(){
-    $peliculas = $this->modelo->getPeliculas();
-    $generos = $this->generosController->getModelo()->getGeneros();
-    $usuarioLogueado=$this->loginController->usuarioLogueado();
-    $this->vista->mostrarPrincipal($peliculas,$generos,$usuarioLogueado);
-  }
-  
   function updateGenerosPelicula($generos,$id_pelicula){//cuando edito compruebo los generos que ya existen en esa pelicula, para no modificarlos, los que no existen, para crearlos y los que ya no estan, borrarlos
     $todosLosGeneros=$this->generosController->getModelo()->getGeneros();
     $generosAnterioresDePelicula=$this->modelo->getGenerosSegunIdPelicula($id_pelicula);
@@ -169,7 +184,7 @@ class PeliculasController
   function getPelicula(){
     $id_pelicula=$_GET['id_pelicula'];
     $pelicula=$this->modelo->getPeliculaXId($id_pelicula);
-    $usuarioLogueado=$this->loginController->usuarioLogueado();
+    $usuarioLogueado=$this->userController->usuarioLogueado();
     $this->vistaDetallesPelicula->getPelicula($pelicula,$usuarioLogueado);
   }
 
@@ -197,7 +212,7 @@ class PeliculasController
     $id_pelicula=$_GET['id_pelicula'];
     $this->modelo->eliminarImagen($id_imagen);
     $pelicula = $this->modelo->getPeliculaXId($id_pelicula);
-    $usuarioLogueado=$this->loginController->usuarioLogueado();
+    $usuarioLogueado=$this->userController->usuarioLogueado();
     $this->vistaDetallesPelicula->getPelicula($pelicula,$usuarioLogueado);
   }
 }

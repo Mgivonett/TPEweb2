@@ -48,4 +48,14 @@
 </section>
 
 <!--////////////////////////////////////Footer-->
-    {include file='footer.tpl'}
+<footer class="zerogrid">
+    <div class="copyright">
+        <div class="wrapper">
+            Copyright 2016 - <a href="https://youtu.be/mJm8HTcTc4o" target="_blank" rel="nofollow">Rodriguez, Givonetti</a>
+            <ul class="quick-link f-right">
+                <li><a href="#" class="admin-peliculas">{if $admin}Administrar Contenidos{/if}</a></li>
+                <li><a href="#" class="AdminsConfig">{if $admin}Administrar Usuarios{/if}</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>

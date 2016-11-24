@@ -1,19 +1,18 @@
 <?php
 include_once('controllers/PeliculasController.php');
 include_once('controllers/GenerosController.php');
-include_once('controllers/LoginController.php');
-include_once('controllers/SingUpController.php');
+include_once('controllers/UserController.php');
 require_once ('config/ConfigApp.php');
 
-$generosController = new GenerosController();
-$loginController= new LoginController();
-$SingUpController = new SingUp();
+define('ADMIN', 'admin');
+define('USER', 'user');
 
-$controller = new PeliculasController($generosController,$loginController);
+$generosController = new GenerosController();
+$userController= new UserController();
+$controller = new PeliculasController($generosController,$userController);
 
 if (!array_key_exists(ConfigApp::$ACTION,$_REQUEST)){
   $controller->iniciar();
-
   die();
 }
 
@@ -25,60 +24,91 @@ switch ($_REQUEST[ConfigApp::$ACTION]) {
     $controller->getPelicula();
     break;
   case ConfigApp::$ACTION_GUARDAR_PELICULA:
-    $controller->guardar();
+    if($userController->checkLogin() == ADMIN) {
+      $controller->guardar();
+    }
     break;
   case ConfigApp::$ACTION_ELIMINAR_PELICULA:
-    $controller->eliminar();
+    if($userController->checkLogin()== ADMIN) {
+      $controller->eliminar();
+    }
     break;
   case ConfigApp::$ACTION_IR_A_EDITAR_PELICULA:
-    $controller->peliculaAEditar();
+    if($userController->checkLogin()== ADMIN) {
+      $controller->peliculaAEditar();
+    }
     break;
   case ConfigApp::$ACTION_EDITAR_PELICULA:
-    $controller->editar();
+    if($userController->checkLogin()== ADMIN) {
+      $controller->editar();
+    }
     break;
   case ConfigApp::$ACTION_MOSTRAR_PELICULAS_X_GENERO:
     $controller->mostrarPeliculasXGenero();
     break;
   case ConfigApp::$ACTION_IR_A_ADMINISTRAR_GENEROS:
-    $generosController->irAAdministrarGeneros();
+    if($userController->checkLogin()== ADMIN) {
+      $generosController->irAAdministrarGeneros();
+    }
     break;
   case ConfigApp::$ACTION_GUARDAR_GENERO:
-    $generosController->guardarGenero();
+    if($userController->checkLogin()== ADMIN) {
+      $generosController->guardarGenero();
+    }
     break;
   case ConfigApp::$ACTION_IR_A_EDITAR_GENERO:
-    $generosController->generoAEditar();
+    if($userController->checkLogin()== ADMIN) {
+      $generosController->generoAEditar();
+    }
     break;
   case ConfigApp::$ACTION_EDITAR_GENERO:
-    $generosController->editarGenero();
+    if($userController->checkLogin()== ADMIN) {
+      $generosController->editarGenero();
+    }
     break;
   case ConfigApp::$ACTION_ELIMINAR_GENERO:
-    $generosController->eliminarGenero();
+    if($userController->checkLogin()== ADMIN) {
+      $generosController->eliminarGenero();
+    }
     break;
   case ConfigApp::$ACTION_ELIMINAR_IMAGEN:
-    $controller->eliminarImagen();
+    if($userController->checkLogin()== ADMIN) {
+      $controller->eliminarImagen();
+    }
     break;
   case ConfigApp::$ACTION_IR_A_ADMINISTRAR_PELICULAS:
-    $controller->irAAdministradorDePeliculas();
+    if($userController->checkLogin()== ADMIN) {
+      $controller->irAAdministradorDePeliculas();
+    }
     break;
   case ConfigApp::$ACTION_HOME:
     $controller->mostrarVistaPeliculas();
     break;
   case ConfigApp::$ACTION_IR_ADMINS_CONFIG:
-    $loginController->IrAdminsConfig();
+    $userController->IrAdminsConfig();
     break;
   case ConfigApp::$ACTION_IR_A_LOGIN:
-    $loginController->iniciar([]);
+    $userController->iniciar([]);
     break;
   case ConfigApp::$ACTION_LOGIN:
-    $loginController->login();
+    $userController->login();
+    $controller->mostrarPrincipal();
     break;
   case ConfigApp::$ACTION_LOGOUT:
-    $loginController->logout();
+    $userController->logout();
     break;
-  case ConfigApp::$ACTION_SINGUP:
-    $SingUpController->crearUsuario();
+  case ConfigApp::$ACTION_SIGNUP:
+    $userController->createUsuario();
+    $controller->mostrarPrincipal();
+    break;
   case ConfigApp::$ACTION_PRINCIPAL:
     $controller->mostrarPrincipal();
+    break;
+  case ConfigApp::$ACTION_IR_ADMINISTRAR_USUARIOS:
+    if($userController->checkLogin()== ADMIN) {
+      $userController->administrarUsuarios();
+      $controller->mostrarPrincipal();
+    }
     break;
   default:
     $controller->iniciar();
